@@ -25,4 +25,4 @@ export const sidebar_data = [
   }
 ];
 
-export const orgName=["Ibn sina","Popular","Asgarali","Medinova"]
+export const orgName=["Due","Completed"]

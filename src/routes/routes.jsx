@@ -1,20 +1,46 @@
 import { createBrowserRouter } from "react-router";
 import MainLayout from "../layout/MainLayout";
-import DueSample from "../pages/DueSample"
+import DueSample from "../pages/DueSample";
 import Phlebotomist from "../pages/Phlebotomist";
+import PrivateRoute from "./privateRoute";
+import Overview from "../pages/Overview";
 
 const routes = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout/>,
+    element: <MainLayout />,
     children: [
       {
+        path: "/",
+        element: (
+          // <PrivateRoute>
+            <Overview />
+          // </PrivateRoute>
+        ),
+      },
+      {
+        path: "/overview",
+        element: (
+          // <PrivateRoute>
+            <Overview />
+          // </PrivateRoute>
+        ),
+      },
+      {
         path: "/due-sample",
-        element: <DueSample/>,
+        element: (
+          // <PrivateRoute>
+            <DueSample />
+          // </PrivateRoute>
+        ),
       },
       {
         path: "/phlebotomist",
-        element: <Phlebotomist/>,
+        element: (
+          // <PrivateRoute>
+            <Phlebotomist />
+          // </PrivateRoute>
+        ),
       },
     ],
   },
