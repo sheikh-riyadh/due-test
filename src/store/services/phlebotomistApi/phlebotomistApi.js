@@ -35,8 +35,8 @@ export const ibnsinaApi = baseApi.injectEndpoints({
 });
 
 export const {
-  usePhlebotomistQuery,
+  useGetPhlebotomistQuery,
   useAddPhlebotomistMutation,
-  useUpdatePhlebotomistMutaion,
-  useDeletePhlebotomistMutation,
+  useUpdatePhlebotomistMutation,
+  useDeletePhlebotomistMutation
 } = ibnsinaApi;

@@ -87,7 +87,8 @@ const DueSampleTable = ({ search, selectedDate, sampleStatus }) => {
                               <img
                                 className={`w-8 h-8 border rounded-full`}
                                 src={singlephle?.photo}
-                                alt=""
+                                alt="phlebotomist"
+                                title={singlephle.name}
                               />
                             </div>
                           ))}

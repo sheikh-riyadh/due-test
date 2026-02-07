@@ -1,29 +1,29 @@
 import { useState } from "react";
 import Button from "../../common/Button";
 import Modal from "../../modals/Modal";
-import DueForm from "./DueForm";
+import PhlebotomistForm from "./PhlebotomistForm";
 
-const AddTest = () => {
+const AddPhlebotomist = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <>
-      <Button onClick={() => setIsModalOpen((prev) => !prev)} className="w-36">
-        Add test
+      <Button onClick={() => setIsModalOpen((prev) => !prev)} className="w-40">
+        Add Phlebotomist
       </Button>
 
       {isModalOpen && (
         <Modal
           title={"Add Test"}
-          className="w-[350px] xl:w-[500px]"
+          className="w-[350px]"
           onClose={setIsModalOpen}
           isOpen={isModalOpen}
         >
-          <DueForm setIsModalOpen={setIsModalOpen} />
+          <PhlebotomistForm setIsModalOpen={setIsModalOpen} />
         </Modal>
       )}
     </>
   );
 };
 
-export default AddTest;
+export default AddPhlebotomist;

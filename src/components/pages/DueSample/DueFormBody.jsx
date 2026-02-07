@@ -10,6 +10,7 @@ const DueFormBody = ({ register }) => {
       <Input
         {...register("invoice")}
         maxLength="9"
+        minLength="9"
         required
         placeholder="Invoice"
         className={classes}
@@ -77,10 +78,7 @@ const DueFormBody = ({ register }) => {
         />
       </div>
 
-      <TextArea 
-      {...register('note')}
-      placeholder="Note:"
-      />
+      <TextArea {...register("note")} placeholder="Note:" />
 
       <Input
         {...register("phlebotomist_id")}
@@ -88,6 +86,8 @@ const DueFormBody = ({ register }) => {
         required
         placeholder="Phlebotomist code"
         className={classes}
+        maxLength="9"
+        minLength="6"
       />
     </>
   );
