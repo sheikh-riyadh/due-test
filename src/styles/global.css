@@ -2,20 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
-
-.light {
-  --background: 241, 245, 249;
-  --border: 226, 232, 240;
-  --card: 255, 255, 255;
-  --copy-primary: 100, 116, 139;
-  --copy-secondary: 100, 116, 139;
-  --cta: 139, 92, 246;
-  --cta-active: 124, 58, 237;
-  --cta-text: 255, 255, 255;
-  --input: 46, 58, 71;
-  background: rgba(var(--background));
-  color: rgba(var(--copy-secondary));
+html {
+  box-sizing: border-box;
 }
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  overflow-x: hidden; /* দরকার হলে */
+}
+
 .dark {
   --background: 26, 34, 44;
   --border: 46, 58, 71;
@@ -30,9 +31,15 @@
   color: rgba(var(--copy-secondary));
 }
 
-.spin {
-  animation: spin 5s linear infinite;
+.circle-progressbar::before {
+  content: "";
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  background: #24303f;
+  border-radius: 50%;
 }
+
 .rtl-animation {
   animation: fadeInRight 0.5s ease-in-out;
 }

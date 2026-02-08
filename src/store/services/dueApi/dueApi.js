@@ -2,6 +2,12 @@ import { baseApi } from "../../api/baseApi";
 
 export const dueApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
+    getOverview: build.query({
+      query: () => ({
+        url: `/overview`,
+      }),
+      providesTags: ["due", "overview"],
+    }),
     getDueTest: build.query({
       query: (query) => ({
         url: `/get-all-sample?${query}`,
@@ -35,6 +41,7 @@ export const dueApi = baseApi.injectEndpoints({
 });
 
 export const {
+  useGetOverviewQuery,
   useGetDueTestQuery,
   useAddDueTestMutation,
   useDeleteDueTestMutation,
