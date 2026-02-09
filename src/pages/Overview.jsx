@@ -7,7 +7,6 @@ import { useGetOverviewQuery } from "../store/services/dueApi/dueApi";
 const Overview = () => {
   const { data, isLoading } = useGetOverviewQuery();
 
-  // console.log(data)
 
   const dueSampleData = data?.data?.filter(
     (sample) => sample?.status === "Due",
@@ -66,7 +65,7 @@ const Overview = () => {
             <Analytics analyticeData={analytice} />
           </div>
           <div className="xl:col-span-3 grid grid-cols-2 xl:grid-cols-1 gap-5 h-full">
-            <div className="shadow-md bg-card w-full h-full rounded-sm flex flex-col items-center justify-center gap-3 p-5">
+            <div className="shadow-md bg-[#1f2e2c] w-full h-full rounded-sm flex flex-col items-center justify-center gap-3 p-5">
               <CircleProgressbar
                 className={"text-4xl font-bold  text-white"}
                 data={completed}
@@ -76,11 +75,11 @@ const Overview = () => {
                 {"Today Completed"}
               </p>
             </div>
-            <div className="shadow-md bg-card w-full h-full rounded-sm flex flex-col items-center justify-center gap-3 p-5">
+            <div className="shadow-md bg-[#1f2e2c] w-full h-full rounded-sm flex flex-col items-center justify-center gap-3 p-5">
               <CircleProgressbar
                 className={"text-4xl font-bold text-white"}
                 data={due}
-                color="#fcff66"
+                color="#F2A65A"
               />
               <p className="text-center font-medium text-sm text-white">
                 {"Today Due"}

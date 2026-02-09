@@ -31,13 +31,13 @@ const Modal = ({
 
   return (
     <div
-      className={`fixed  top-0 left-0 z-50 overflow-x-hidden overflow-y-auto inset-0 h-[calc(100%)] max-h-full bg-black/90 flex flex-col justify-center items-center zoom-in-element ${
+      className={`fixed  top-0 left-0 z-50 overflow-x-hidden overflow-y-auto inset-0 h-[calc(100%)] max-h-full bg-[#2222227c] backdrop-blur flex flex-col justify-center items-center zoom-in-element ${
         isOpen ? "block" : "hidden"
       }`}
     >
       <div
         className={cn(
-          "bg-card rounded-lg p-5 shadow-lg  overflow-y-auto",
+          "bg-[#171f12] rounded-lg p-5 shadow-lg  overflow-y-auto border border-[#1f2e2c]",
           className
         )}
       >

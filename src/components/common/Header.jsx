@@ -15,7 +15,7 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="w-full bg-card sticky top-0 flex items-center justify-between lg:justify-end p-3.5 z-30">
+    <header className="w-full bg-[#1f2e2c] sticky top-0 flex items-center justify-between lg:justify-end p-3.5 z-30">
       <div
         className="cursor-pointer lg:hidden"
         onClick={() => setIsOpen((prev) => !prev)}

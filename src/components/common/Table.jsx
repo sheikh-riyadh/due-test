@@ -18,14 +18,14 @@ const Table = ({ columns, tableData, className }) => {
     <div className="overflow-x-auto">
       {data?.length ? (
         <table
-          className={cn(`min-w-full bg-widget rounded-lg shadow-md`, className)}
+          className={cn(`min-w-full rounded-lg shadow-md`, className)}
         >
-          <thead className="bg-widget">
+          <thead>
             <tr>
               {columns?.map((column, index) => (
                 <th key={index} className="p-4 text-left text-primary">
                   <div className="flex items-center justify-between">
-                    <span className="whitespace-nowrap">{column.name}</span>{" "}
+                    <span className="whitespace-nowrap text-[#047857]">{column.name}</span>{" "}
                   </div>
                 </th>
               ))}
@@ -33,14 +33,14 @@ const Table = ({ columns, tableData, className }) => {
           </thead>
           <tbody
             className={cn(
-              `text-primary text-sm font-light bg-widget`,
+              `text-primary text-sm font-light`,
               className
             )}
           >
             {data?.map((item, index) => (
               <tr key={index} className="">
                 {columns?.map((column, index) => (
-                  <td key={index} className="p-4 border-t border-slate-300">
+                  <td key={index} className="p-4 border-t border-[#171f12]">
                     {column?.render ? (
                       <column.render item={item} />
                     ) : (

@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { NavLink } from "react-router";
+import { NavLink, useLocation } from "react-router";
 import PropTypes from "prop-types";
 import { FaArrowLeft, FaArrowRight, FaSignOutAlt } from "react-icons/fa";
 import { sidebar_data } from "../data/sidebar_data";
 import { removeUser } from "../store/features/user/userSlice";
-import eyes_off from "../assets/eyes_off.png"
-import only_head from "../assets/only-head.png"
-
+import eyes_off from "../assets/eyes_off.png";
+import only_head from "../assets/only-head.png";
 
 const Sidebar = ({ visibleArrow = true, setIsModalOpen = () => {} }) => {
   const [isOpen, setIsOpen] = useState(true);
   const dispatch = useDispatch();
+  const { pathname } = useLocation();
 
   const [isOff, setIsOff] = useState(false);
   useEffect(() => {
@@ -23,7 +23,7 @@ const Sidebar = ({ visibleArrow = true, setIsModalOpen = () => {} }) => {
 
   return (
     <aside
-      className={`h-[calc(100vh)] transition-all block bg-card sticky top-0 z-40 ${
+      className={`h-[calc(100vh)] transition-all block bg-[#1f2e2c] sticky top-0 z-40 ${
         isOpen ? "w-[250px]" : "w-[85px]"
       }`}
     >
@@ -44,12 +44,12 @@ const Sidebar = ({ visibleArrow = true, setIsModalOpen = () => {} }) => {
             >
               {isOpen ? (
                 <FaArrowLeft
-                  className="bg-blue-600 p-2 rounded-full border border-border-primary cursor-pointer z-[999]"
+                  className="bg-[#abd006] p-2 rounded-full border border-border-primary cursor-pointer z-[999]"
                   onClick={() => setIsOpen((prev) => !prev)}
                 />
               ) : (
                 <FaArrowRight
-                  className="bg-blue-600 p-2 rounded-full cursor-pointer z-[999]"
+                  className="bg-[#abd006] p-2 rounded-full cursor-pointer z-[999]"
                   onClick={() => setIsOpen((prev) => !prev)}
                 />
               )}
@@ -69,12 +69,7 @@ const Sidebar = ({ visibleArrow = true, setIsModalOpen = () => {} }) => {
                   key={item.name}
                   to={item.path}
                   onClick={() => setIsModalOpen(false)}
-                  className="w-full flex items-center gap-5 py-3 px-8 font-semibold transition-all text-primary"
-                  style={({ isActive }) => {
-                    return {
-                      color: isActive ? "#2563eb" : undefined,
-                    };
-                  }}
+                  className={`w-full flex items-center gap-5 py-3 px-8 font-semibold transition-all text-primary ${pathname==item?.path? "bg-[#047857]":null}`}
                   title={item.name}
                 >
                   <div
@@ -108,7 +103,7 @@ const Sidebar = ({ visibleArrow = true, setIsModalOpen = () => {} }) => {
               </div>
             </div>
             <div
-              className={`flex gap-3 items-center bg-blue-600 rounded-lg text-xl text-[#fff] p-4`}
+              className={`flex gap-3 items-center bg-[#047857] rounded-lg text-xl text-[#fff] p-4`}
               onClick={() => dispatch(removeUser())}
             >
               <FaSignOutAlt className="text-base" />

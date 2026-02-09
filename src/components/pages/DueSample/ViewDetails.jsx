@@ -24,7 +24,7 @@ const ViewDetails = ({ item }) => {
           isOpen={isModalOpen}
         >
           <div className="flex flex-col gap-5">
-            <div className="bg-background p-3 rounded-md flex flex-col gap-2">
+            <div className="bg-[#1C2822] p-3 rounded-md flex flex-col gap-2">
               <span
                 className={`px-5 rounded-md -mt-6 ${item?.status == "Due" ? "bg-[#F2A65A] w-20 text-xl" : "bg-green-500 w-32 text-xl"}`}
               >
@@ -71,7 +71,7 @@ const ViewDetails = ({ item }) => {
               )}
             </div>
             <div className="grid grid-cols-2 gap-5">
-              <div className="bg-background p-3 rounded-md flex flex-col gap-3">
+              <div className="bg-[#1C2822] p-3 rounded-md flex flex-col gap-3">
                 <span>Test: {item?.test}</span>
                 <span>Drug: {item?.drug}</span>
                 <div>
@@ -95,7 +95,7 @@ const ViewDetails = ({ item }) => {
                   </div>
                 </div>
               </div>
-              <div className="bg-background p-3 rounded-md">
+              <div className="bg-[#1C2822] p-3 rounded-md">
                 <span>
                   {item?.note ? item?.note : "There is no patient node."}
                 </span>

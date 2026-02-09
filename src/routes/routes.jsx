@@ -4,6 +4,7 @@ import DueSample from "../pages/DueSample";
 import Phlebotomist from "../pages/Phlebotomist";
 import PrivateRoute from "./privateRoute";
 import Overview from "../pages/Overview";
+import Login from "../pages/Login";
 
 const routes = createBrowserRouter([
   {
@@ -44,10 +45,10 @@ const routes = createBrowserRouter([
       },
     ],
   },
-  // {
-  //   path: "/login",
-  //   element: <Login />,
-  // },
+  {
+    path: "/login",
+    element: <Login />,
+  },
 ]);
 
 export default routes;

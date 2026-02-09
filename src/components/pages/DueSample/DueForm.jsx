@@ -11,7 +11,6 @@ const DueForm = ({ setIsModalOpen }) => {
 
   const handleCreatePopular = async (data) => {
     const result = await createPopularTest(data);
-    console.log(result)
     if (result?.data?.acknowledged) {
       toast.success("Test added successfully", { id: "success" });
       setIsModalOpen(false);

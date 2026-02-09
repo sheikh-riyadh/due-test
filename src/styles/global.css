@@ -15,6 +15,7 @@ html {
 body {
   margin: 0;
   overflow-x: hidden; /* দরকার হলে */
+  
 }
 
 .dark {
@@ -29,6 +30,7 @@ body {
   --input: 46, 58, 71;
   background: rgba(var(--background));
   color: rgba(var(--copy-secondary));
+  background-color: #171f12;
 }
 
 .circle-progressbar::before {
@@ -36,7 +38,7 @@ body {
   position: absolute;
   width: 100px;
   height: 100px;
-  background: #24303f;
+  background: #1f2e2c;
   border-radius: 50%;
 }
 

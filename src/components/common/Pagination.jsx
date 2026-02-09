@@ -10,7 +10,7 @@ const Pagination = ({ pages, setCurrentPage, setLimit, currentPage }) => {
             onClick={() => setCurrentPage(page)}
             key={page}
             className={`px-3 py-1 cursor-pointer rounded-md ${
-              currentPage == page ? "bg-blue-600 text-white" : "bg-slate-500 text-white"
+              currentPage == page ? "bg-[#abd006] text-white" : "bg-[#047857] text-white"
             }`}
           >
             <span className="font-bold">{page + 1}</span>

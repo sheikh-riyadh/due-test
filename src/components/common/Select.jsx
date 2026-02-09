@@ -12,7 +12,7 @@ const Select = forwardRef(({ className, label = "", ...rest }, ref) => {
       )}
       <select
         className={cn(
-          `focus:outline-none bg-background w-full py-2 px-2 rounded-sm`,
+          `focus:outline-none bg-[#1C2822] w-full py-2 px-2 rounded-sm`,
           className
         )}
         {...rest}

@@ -18,13 +18,13 @@ const DueSample = () => {
             <div className="flex items-center justify-center xl:flex-nowrap flex-wrap gap-5 font-bold">
               <span
                 onClick={() => setSampleStatus("Due")}
-                className={`${sampleStatus == "Due" ? "bg-blue-600" : "bg-card"} text-primary px-5 py-1 rounded-full cursor-pointer`}
+                className={`${sampleStatus == "Due" ? "bg-[#047857]" : "bg-[#1C2822]"} text-primary px-5 py-1 rounded-full cursor-pointer`}
               >
                 Due
               </span>
               <span
                 onClick={() => setSampleStatus("Collected")}
-                className={`${sampleStatus == "Collected" ? "bg-blue-600" : "bg-card"} text-primary px-5 py-1 rounded-full cursor-pointer`}
+                className={`${sampleStatus == "Collected" ? "bg-[#047857]" : "bg-[#1C2822]"} text-primary px-5 py-1 rounded-full cursor-pointer`}
               >
                 Collected
               </span>
@@ -32,7 +32,7 @@ const DueSample = () => {
                 onChange={(e) => setSelectedDate(e.target.value)}
                 type="date"
                 title="Due date"
-                className={"bg-card py-1 rounded-full"}
+                className={"bg-[#1C2822] py-1 rounded-full"}
               />
             </div>
           </div>
@@ -40,14 +40,14 @@ const DueSample = () => {
             <Input
               maxLength="9"
               placeholder="Search..."
-              className="bg-card"
+              className="bg-[#1C2822]"
               onChange={handleChange}
             />
 
             <AddTest />
           </div>
         </div>
-        <div className="bg-card border border-border-primary rounded-sm overflow-hidden">
+        <div className="bg-[#1f2e2c] rounded-sm overflow-hidden">
           <DueSampleTable
             search={searchValue}
             selectedDate={selectedDate}

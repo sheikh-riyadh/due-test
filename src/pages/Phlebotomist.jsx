@@ -14,13 +14,13 @@ const Phlebotomist = () => {
           <div className="flex items-center gap-3 justify-end mt-5 xl:mt-0">
             <Input
               placeholder="Search..."
-              className="bg-card"
+              className="bg-[#1C2822]"
               onChange={handleChange}
             />
             <AddPhlebotomist />
           </div>
         </div>
-        <div className="bg-card border border-border-primary rounded-sm overflow-hidden">
+        <div className="bg-[#1f2e2c] rounded-sm overflow-hidden">
           <PhlebotomistTable search={searchValue} />
         </div>
       </div>

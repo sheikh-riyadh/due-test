@@ -12,7 +12,7 @@ const TextArea = forwardRef(({ className, label = "", ...rest }, ref) => {
       )}
       <textarea
         className={cn(
-          `focus:outline-none bg-background w-full p-2 rounded-sm`,
+          `focus:outline-none bg-[#1C2822] w-full p-2 rounded-sm`,
           className
         )}
         {...rest}

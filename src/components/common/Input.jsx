@@ -7,8 +7,6 @@ const Input = forwardRef(
   ({ className, label = "", type = "text", ...rest }, ref) => {
     const [changeType, setChangeType] = useState(type);
 
-    console.log(changeType)
-
     return (
       <div className="flex flex-col gap-1 overflow-hidden">
         {label && (
@@ -19,7 +17,7 @@ const Input = forwardRef(
         <div className="flex items-center justify-between relative w-full overflow-hidden">
           <input
             className={cn(
-              `focus:outline-none bg-background w-full p-2 rounded`,
+              `focus:outline-none bg-[#1C2822] w-full p-2 rounded`,
               className
             )}
             {...rest}
