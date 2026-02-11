@@ -5,15 +5,26 @@ import { useNavigate } from "react-router";
 import Input from "../components/common/Input";
 import SubmitButton from "../components/common/SubmitButton";
 import mountain from "../assets/mountain-04_od_cz.png"
+import { useUserMutation } from "../store/services/auth/authApi";
+import { addUser } from "../store/features/user/userSlice";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
+  const [handleUser,{isLoading}]=useUserMutation()
+
   const { handleSubmit, register } = useForm();
 
   const handleLogin = async ({ email, password }) => {
-    
+    const result = await handleUser({email,password})
+    if(result?.data){
+      dispatch(addUser({...result?.data}))
+      navigate("/");
+    }else{
+       toast.error("Something went wrong 😓", { id: "error" });
+    }
   };
 
   return (
@@ -47,7 +58,7 @@ const Login = () => {
             </div>
 
             <SubmitButton
-            //   isLoading={isLoading || jwtLoading}
+              isLoading={isLoading}
               className="bg-emerald-700"
             >
               Sign In

@@ -6,7 +6,7 @@ import { removeUser } from "../features/user/userSlice";
 const baseQueryWithReauth = async (args, api, extraOptions) => {
   const baseQuery = fetchBaseQuery({
     baseUrl: `${import.meta.env.VITE_api_url}`,
-    // credentials: "include",
+    credentials: "include",
   });
   const result = await baseQuery(args, api, extraOptions);
   if (result?.error && [401, 403].includes(result?.error?.status)) {

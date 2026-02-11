@@ -1,6 +1,6 @@
 import { baseApi } from "../../api/baseApi";
 
-export const ibnsinaApi = baseApi.injectEndpoints({
+export const phlebotomistApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getPhlebotomist: build.query({
       query: (query) => ({
@@ -39,4 +39,4 @@ export const {
   useAddPhlebotomistMutation,
   useUpdatePhlebotomistMutation,
   useDeletePhlebotomistMutation
-} = ibnsinaApi;
+} = phlebotomistApi;
