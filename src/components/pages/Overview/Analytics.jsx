@@ -13,7 +13,7 @@ import PropTypes from "prop-types";
 
 const Analytics = ({ analyticeData }) => {
   const color_1 = "#F2A65A",
-    color_2 = "#22c55e";
+    color_2 = "#047857";
 
   return (
     <div className="w-full bg-[#1f2e2c] text-white md:h-[550px]  col-span-9 gap-5 shadow-md md:pb-28 lg:pb-36 rounded-sm">
@@ -28,7 +28,7 @@ const Analytics = ({ analyticeData }) => {
             <span>Due</span>
           </div>
           <div className="flex items-center gap-2">
-            <FaCircle className="text-md rounded-full text-green-600" />
+            <FaCircle className="text-md rounded-full text-[#047857]" />
             <h1>Complete</h1>
           </div>
         </div>

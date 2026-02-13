@@ -5,14 +5,22 @@ import toast from "react-hot-toast";
 import { useAddPhlebotomistMutation } from "../../../store/services/phlebotomistApi/phlebotomistApi";
 import SubmitButton from "../../common/SubmitButton";
 import PhlebotomistFormBody from "./PhlebotomistFormBody";
+import { useGetUser } from "../../../hooks/useGetUser";
 
 const PhlebotomistForm = ({ setIsModalOpen }) => {
   const [photo, setPhoto] = useState("");
   const { register, handleSubmit } = useForm();
+
   const [addPhle, { isLoading }] = useAddPhlebotomistMutation();
+  const { user } = useGetUser();
 
   const handleAddPhlebotomist = async (data) => {
-    const result = await addPhle({ ...data, photo });
+    const phlebotom_data = {
+      data: { ...data, photo },
+      email: user?.email,
+    };
+
+    const result = await addPhle(phlebotom_data);
     if (result?.data?.acknowledged) {
       toast.success("successfully added", { id: "success" });
       setIsModalOpen(false);
@@ -30,7 +38,11 @@ const PhlebotomistForm = ({ setIsModalOpen }) => {
         onSubmit={handleSubmit(handleAddPhlebotomist)}
         className="flex flex-col gap-5"
       >
-        <PhlebotomistFormBody register={register} photo={photo} setPhoto={setPhoto} />
+        <PhlebotomistFormBody
+          register={register}
+          photo={photo}
+          setPhoto={setPhoto}
+        />
         <SubmitButton isLoading={isLoading}>Save</SubmitButton>
       </form>
     </div>

@@ -3,24 +3,34 @@ import PropTypes from "prop-types";
 import { FaTrash } from "react-icons/fa";
 import DeleteModal from "../../modals/DeleteModal";
 import { useDeletePhlebotomistMutation } from "../../../store/services/phlebotomistApi/phlebotomistApi";
+import Button from "../../common/Button";
+import { useGetUser } from "../../../hooks/useGetUser";
 
 const DeletePhlebotomist = ({ deleteId }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [deletePhle, { isLoading }] = useDeletePhlebotomistMutation();
+  const { user } = useGetUser();
+
+
+   const query = new URLSearchParams({
+    id: deleteId,
+    email: user?.email,
+  }).toString();
 
   return (
     <>
-      <span
-        className="text-danger cursor-pointer border border-danger text-center p-2 rounded-full bg-rose-500 duration-300"
+      <Button
+        className="text-danger cursor-pointer border border-danger text-center p-2 rounded-full bg-rose-500 duration-300 w-8 disabled:bg-gray-700 disabled:cursor-not-allowed"
         title="Delete"
-        onClick={()=>setIsModalOpen(prev=>!prev)}
+        onClick={() => setIsModalOpen((prev) => !prev)}
+        disabled={user?.role !== "admin" && true}
       >
         <FaTrash className="text-white" />
-      </span>
+      </Button>
 
       {isModalOpen && (
         <DeleteModal
-          deleteId={deleteId}
+          deleteId={query}
           handleDeleteFunction={deletePhle}
           isLoading={isLoading}
           isModalOpen={isModalOpen}

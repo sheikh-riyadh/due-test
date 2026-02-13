@@ -25,8 +25,8 @@ export const phlebotomistApi = baseApi.injectEndpoints({
       invalidatesTags: ["phlebotomist"],
     }),
     deletePhlebotomist: build.mutation({
-      query: (id) => ({
-        url: `/delete-phlebotomist?id=${id}`,
+      query: (data) => ({
+        url: `/delete-phlebotomist?${data}`,
         method: "DELETE",
       }),
       invalidatesTags: ["phlebotomist"],

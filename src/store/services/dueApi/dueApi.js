@@ -3,8 +3,8 @@ import { baseApi } from "../../api/baseApi";
 export const dueApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getOverview: build.query({
-      query: () => ({
-        url: `/overview`,
+      query: (data) => ({
+        url: `/overview?${data}`,
       }),
       providesTags: ["due", "overview"],
     }),
@@ -31,8 +31,8 @@ export const dueApi = baseApi.injectEndpoints({
       invalidatesTags: ["due"],
     }),
     deleteDueTest: build.mutation({
-      query: (id) => ({
-        url: `/delete-sample?id=${id}`,
+      query: (data) => ({
+        url: `/delete-sample?${data}`,
         method: "DELETE",
       }),
       invalidatesTags: ["due", "overview"],

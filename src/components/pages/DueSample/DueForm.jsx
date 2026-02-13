@@ -4,19 +4,20 @@ import toast from "react-hot-toast";
 import SubmitButton from "../../common/SubmitButton";
 import DueFormBody from "./DueFormBody";
 import { useAddDueTestMutation } from "../../../store/services/dueApi/dueApi";
+import { useGetUser } from "../../../hooks/useGetUser";
 
 const DueForm = ({ setIsModalOpen }) => {
-  const [createPopularTest, { isLoading }] = useAddDueTestMutation()
+  const [createPopularTest, { isLoading }] = useAddDueTestMutation();
   const { register, handleSubmit } = useForm();
+  const { user } = useGetUser();
 
   const handleCreatePopular = async (data) => {
-    const result = await createPopularTest(data);
+    const result = await createPopularTest({ data, email: user?.email });
     if (result?.data?.acknowledged) {
       toast.success("Test added successfully", { id: "success" });
       setIsModalOpen(false);
     } else {
       toast.error(result?.error?.data?.message);
-      
     }
   };
   return (
@@ -25,7 +26,7 @@ const DueForm = ({ setIsModalOpen }) => {
         onSubmit={handleSubmit(handleCreatePopular)}
         className="flex flex-col gap-3"
       >
-        <DueFormBody register={register}/>
+        <DueFormBody register={register} />
         <SubmitButton isLoading={isLoading}>Save</SubmitButton>
       </form>
     </div>

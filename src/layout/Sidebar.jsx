@@ -7,11 +7,18 @@ import { sidebar_data } from "../data/sidebar_data";
 import { removeUser } from "../store/features/user/userSlice";
 import eyes_off from "../assets/eyes_off.png";
 import only_head from "../assets/only-head.png";
+import { useGetUser } from "../hooks/useGetUser";
 
 const Sidebar = ({ visibleArrow = true, setIsModalOpen = () => {} }) => {
   const [isOpen, setIsOpen] = useState(true);
   const dispatch = useDispatch();
+
+
+
   const { pathname } = useLocation();
+  const {user} = useGetUser()
+
+
 
   const [isOff, setIsOff] = useState(false);
   useEffect(() => {
@@ -99,7 +106,7 @@ const Sidebar = ({ visibleArrow = true, setIsModalOpen = () => {} }) => {
                 className="text-primary"
                 style={{ display: isOpen ? "block" : "none" }}
               >
-                <h3 className="text-base font-semibold">Admin</h3>
+                <h3 className="text-base font-semibold capitalize">{user?.role}</h3>
               </div>
             </div>
             <div

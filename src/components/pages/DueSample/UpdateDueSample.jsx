@@ -7,17 +7,20 @@ import Modal from "../../modals/Modal";
 import SubmitButton from "../../common/SubmitButton";
 import DueFormBody from "./DueFormBody";
 import { useUpdateDueTestMutation } from "../../../store/services/dueApi/dueApi";
+import { useGetUser } from "../../../hooks/useGetUser";
 
 const UpdateDueSample = ({ item }) => {
   const { register, setValue, handleSubmit } = useForm();
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   const [updatePopular, { isLoading }] = useUpdateDueTestMutation();
+  const {user} =useGetUser()
 
   const handleUpdatePopular = async (data) => {
     const query = {
       id: item?._id,
       data,
+      email: user?.email
     };
     try {
       const result = await updatePopular(query);
@@ -54,7 +57,7 @@ const UpdateDueSample = ({ item }) => {
   return (
     <>
       <span
-        className="text-danger cursor-pointer border border-danger text-center p-2 rounded-full bg-blue-600 duration-300"
+        className="text-danger cursor-pointer border border-danger text-center p-2 rounded-full bg-[#171f12] duration-300"
         title="Delete"
         onClick={() => setIsFormOpen((prev) => !prev)}
       >

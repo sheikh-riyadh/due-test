@@ -10,7 +10,7 @@ const ViewDetails = ({ item }) => {
   return (
     <>
       <span
-        className="text-danger cursor-pointer border border-danger text-center p-2 rounded-full bg-blue-600 duration-300"
+        className="text-danger cursor-pointer border border-danger text-center p-2 rounded-full bg-[#171f12] duration-300"
         title="Delete"
         onClick={() => setIsModalOpen((prev) => !prev)}
       >

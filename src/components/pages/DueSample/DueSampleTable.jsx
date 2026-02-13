@@ -10,10 +10,12 @@ import DeleteDueSample from "./DeleteDueSample";
 import CountDown from "./CountDown";
 import Pagination from "../../common/Pagination";
 import Spinner from "../../common/Spinner";
+import { useGetUser } from "../../../hooks/useGetUser";
 
 const DueSampleTable = ({ search, selectedDate, sampleStatus }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [limit, setLimit] = useState(10);
+  const { user } = useGetUser();
 
   const query = new URLSearchParams({
     search,
@@ -21,6 +23,7 @@ const DueSampleTable = ({ search, selectedDate, sampleStatus }) => {
     page: currentPage,
     selectedDate: selectedDate ? selectedDate : "",
     sampleStatus,
+    email: user?.email,
   }).toString();
 
   const { data, isLoading } = useGetDueTestQuery(query);
@@ -51,7 +54,7 @@ const DueSampleTable = ({ search, selectedDate, sampleStatus }) => {
                     <span
                       className={`capitalize ${
                         item?.status == "Collected"
-                          ? "bg-green-500 px-5 rounded-full py-1"
+                          ? "bg-[#047857] px-5 rounded-full py-1"
                           : "bg-[#F2A65A] px-5 rounded-full py-1 text-white"
                       }`}
                     >

@@ -7,12 +7,15 @@ import { useUpdatePhlebotomistMutation } from "../../../store/services/phlebotom
 import Modal from "../../modals/Modal";
 import PhlebotomistFormBody from "./PhlebotomistFormBody";
 import SubmitButton from "../../common/SubmitButton";
+import Button from "../../common/Button";
+import { useGetUser } from "../../../hooks/useGetUser";
 
 const UpdatePhlebotomist = ({ item }) => {
   const [isFormOpen, setIsFormOpen] = useState(false);
   const { register, handleSubmit, setValue } = useForm();
-  const [photo, setPhoto]=useState(item?.photo || "")
+  const [photo, setPhoto] = useState(item?.photo || "");
 
+  const { user } = useGetUser();
   const [updatePhle, { isLoading }] = useUpdatePhlebotomistMutation();
 
   useEffect(() => {
@@ -28,6 +31,7 @@ const UpdatePhlebotomist = ({ item }) => {
     const query = {
       id: item?._id,
       data: { ...data, photo },
+      email: user?.email
     };
 
     const result = await updatePhle(query);
@@ -44,13 +48,14 @@ const UpdatePhlebotomist = ({ item }) => {
 
   return (
     <>
-      <span
-        className="text-danger cursor-pointer border border-danger text-center p-2 rounded-full bg-blue-600 duration-300"
+      <Button
+        className="text-danger cursor-pointer border border-danger text-center p-2 rounded-full bg-[#171f12] duration-300 w-8 disabled:bg-gray-700 disabled:cursor-not-allowed"
         title="Edit"
+        disabled={user?.role !== "admin" && true}
         onClick={() => setIsFormOpen((prev) => !prev)}
       >
         <FaEdit className="text-white" />
-      </span>
+      </Button>
 
       {isFormOpen && (
         <Modal
@@ -63,7 +68,11 @@ const UpdatePhlebotomist = ({ item }) => {
             onSubmit={handleSubmit(handleUpdatePhlebotomist)}
             className="flex flex-col gap-5"
           >
-            <PhlebotomistFormBody register={register} photo={photo} setPhoto={setPhoto}/>
+            <PhlebotomistFormBody
+              register={register}
+              photo={photo}
+              setPhoto={setPhoto}
+            />
             <SubmitButton isLoading={isLoading}>Update</SubmitButton>
           </form>
         </Modal>

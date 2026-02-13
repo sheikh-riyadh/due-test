@@ -6,17 +6,21 @@ import PropTypes from "prop-types";
 import { useGetPhlebotomistQuery } from "../../../store/services/phlebotomistApi/phlebotomistApi";
 import DeletePhlebotomist from "./DeletePhlebotomist";
 import UpdatePhlebotomist from "./UpdatePhlebotomist";
+import { useGetUser } from "../../../hooks/useGetUser";
 
 const PhlebotomistTable = ({ search }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [limit, setLimit] = useState(10);
+  const { user } = useGetUser();
 
   const query = new URLSearchParams({
     search,
     limit,
     page: currentPage,
+    email:user?.email
   }).toString();
 
+  
   const { data, isLoading } = useGetPhlebotomistQuery(query);
 
   const pages = Math.ceil(Math.abs(data?.total ?? 0) / parseInt(limit));
@@ -36,15 +40,24 @@ const PhlebotomistTable = ({ search }) => {
               },
               {
                 name: "Phlebotomist ID",
-                dataIndex: "phlebotomist_id",
-                key: "phlebotomist_id",
+                render: ({ item }) => {
+                  return user?.role == "admin" ? (
+                    <span>{item?.phlebotomist_id}</span>
+                  ) : (
+                    <span>*********</span>
+                  );
+                },
               },
               {
                 name: "Phlebotomist Photo",
                 render: ({ item }) => {
                   return (
                     <div className="w-10 h-10 rounded-full">
-                      <img className="w-full h-full rounded-full"  src={item?.photo} alt="phlebotomist photo"/>
+                      <img
+                        className="w-full h-full rounded-full"
+                        src={item?.photo}
+                        alt="phlebotomist photo"
+                      />
                     </div>
                   );
                 },
