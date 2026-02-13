@@ -14,33 +14,33 @@ const routes = createBrowserRouter([
       {
         path: "/",
         element: (
-          <PrivateRoute>
+          // <PrivateRoute>
             <Overview />
-          </PrivateRoute>
+          // </PrivateRoute>
         ),
       },
       {
         path: "/overview",
         element: (
-          <PrivateRoute>
+          // <PrivateRoute>
             <Overview />
-           </PrivateRoute>
+          //  </PrivateRoute>
         ),
       },
       {
         path: "/due-sample",
         element: (
-          <PrivateRoute>
+          // <PrivateRoute>
             <DueSample />
-          </PrivateRoute>
+          // </PrivateRoute>
         ),
       },
       {
         path: "/phlebotomist",
         element: (
-          <PrivateRoute>
+          // <PrivateRoute>
             <Phlebotomist />
-          </PrivateRoute>
+          // </PrivateRoute>
         ),
       },
     ],

@@ -8,17 +8,15 @@ import { removeUser } from "../store/features/user/userSlice";
 import eyes_off from "../assets/eyes_off.png";
 import only_head from "../assets/only-head.png";
 import { useGetUser } from "../hooks/useGetUser";
+import { useLogutMutation } from "../store/services/auth/authApi";
 
 const Sidebar = ({ visibleArrow = true, setIsModalOpen = () => {} }) => {
   const [isOpen, setIsOpen] = useState(true);
   const dispatch = useDispatch();
 
-
-
   const { pathname } = useLocation();
-  const {user} = useGetUser()
-
-
+  const { user } = useGetUser();
+  const [handleLogout] = useLogutMutation();
 
   const [isOff, setIsOff] = useState(false);
   useEffect(() => {
@@ -27,6 +25,13 @@ const Sidebar = ({ visibleArrow = true, setIsModalOpen = () => {} }) => {
     }, 1000);
     return () => clearInterval(interval);
   }, []);
+
+  const logout = async () => {
+    const result = await handleLogout();
+    if (result) {
+      dispatch(removeUser());
+    }
+  };
 
   return (
     <aside
@@ -76,7 +81,7 @@ const Sidebar = ({ visibleArrow = true, setIsModalOpen = () => {} }) => {
                   key={item.name}
                   to={item.path}
                   onClick={() => setIsModalOpen(false)}
-                  className={`w-full flex items-center gap-5 py-3 px-8 font-semibold transition-all text-primary ${pathname==item?.path? "bg-[#047857]":null}`}
+                  className={`w-full flex items-center gap-5 py-3 px-8 font-semibold transition-all text-primary ${pathname == item?.path ? "bg-[#047857]" : null}`}
                   title={item.name}
                 >
                   <div
@@ -106,12 +111,14 @@ const Sidebar = ({ visibleArrow = true, setIsModalOpen = () => {} }) => {
                 className="text-primary"
                 style={{ display: isOpen ? "block" : "none" }}
               >
-                <h3 className="text-base font-semibold capitalize">{user?.role}</h3>
+                <h3 className="text-base font-semibold capitalize">
+                  {user?.role}
+                </h3>
               </div>
             </div>
             <div
               className={`flex gap-3 items-center bg-[#047857] rounded-lg text-xl text-[#fff] p-4`}
-              onClick={() => dispatch(removeUser())}
+              onClick={logout}
             >
               <FaSignOutAlt className="text-base" />
               <button style={{ display: isOpen ? "block" : "none" }}>
