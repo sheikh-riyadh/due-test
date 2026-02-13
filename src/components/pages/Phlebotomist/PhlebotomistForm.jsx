@@ -5,22 +5,16 @@ import toast from "react-hot-toast";
 import { useAddPhlebotomistMutation } from "../../../store/services/phlebotomistApi/phlebotomistApi";
 import SubmitButton from "../../common/SubmitButton";
 import PhlebotomistFormBody from "./PhlebotomistFormBody";
-import { useGetUser } from "../../../hooks/useGetUser";
 
 const PhlebotomistForm = ({ setIsModalOpen }) => {
   const [photo, setPhoto] = useState("");
   const { register, handleSubmit } = useForm();
 
   const [addPhle, { isLoading }] = useAddPhlebotomistMutation();
-  const { user } = useGetUser();
 
   const handleAddPhlebotomist = async (data) => {
-    const phlebotom_data = {
-      data: { ...data, photo },
-      email: user?.email,
-    };
 
-    const result = await addPhle(phlebotom_data);
+    const result = await addPhle({...data,photo});
     if (result?.data?.acknowledged) {
       toast.success("successfully added", { id: "success" });
       setIsModalOpen(false);

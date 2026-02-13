@@ -31,7 +31,6 @@ const UpdatePhlebotomist = ({ item }) => {
     const query = {
       id: item?._id,
       data: { ...data, photo },
-      email: user?.email
     };
 
     const result = await updatePhle(query);

@@ -17,7 +17,6 @@ const PhlebotomistTable = ({ search }) => {
     search,
     limit,
     page: currentPage,
-    email:user?.email
   }).toString();
 
   

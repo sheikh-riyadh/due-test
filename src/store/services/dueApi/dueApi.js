@@ -3,8 +3,8 @@ import { baseApi } from "../../api/baseApi";
 export const dueApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     getOverview: build.query({
-      query: (data) => ({
-        url: `/overview?${data}`,
+      query: () => ({
+        url: `/overview`,
       }),
       providesTags: ["due", "overview"],
     }),

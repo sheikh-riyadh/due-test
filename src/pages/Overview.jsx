@@ -3,16 +3,9 @@ import Analytics from "../components/pages/Overview/Analytics";
 import CircleProgressbar from "../components/pages/Overview/CircleProgressbar";
 import OverviewSkeleton from "../components/pages/Overview/OverviewSkeleton";
 import { useGetOverviewQuery } from "../store/services/dueApi/dueApi";
-import { useGetUser } from "../hooks/useGetUser";
 
 const Overview = () => {
-  const { user } = useGetUser();
-
-  const query = new URLSearchParams({
-    email: user?.email,
-  }).toString();
-
-  const { data, isLoading } = useGetOverviewQuery(query);
+  const { data, isLoading } = useGetOverviewQuery();
 
   const dueSampleData = data?.data?.filter(
     (sample) => sample?.status === "Due",

@@ -7,31 +7,28 @@ import Modal from "../../modals/Modal";
 import SubmitButton from "../../common/SubmitButton";
 import DueFormBody from "./DueFormBody";
 import { useUpdateDueTestMutation } from "../../../store/services/dueApi/dueApi";
-import { useGetUser } from "../../../hooks/useGetUser";
 
 const UpdateDueSample = ({ item }) => {
   const { register, setValue, handleSubmit } = useForm();
   const [isFormOpen, setIsFormOpen] = useState(false);
 
   const [updatePopular, { isLoading }] = useUpdateDueTestMutation();
-  const {user} =useGetUser()
 
   const handleUpdatePopular = async (data) => {
     const query = {
       id: item?._id,
       data,
-      email: user?.email
     };
     try {
       const result = await updatePopular(query);
       if (result?.data?.acknowledged) {
         toast.success("Update test successfully 😀", { id: "success" });
-      }else{
+      } else {
         toast.error(
-        result?.error?.data?.message
-          ? result?.error?.data?.message
-          : "Something went wrong",
-      );
+          result?.error?.data?.message
+            ? result?.error?.data?.message
+            : "Something went wrong",
+        );
       }
     } catch (error) {
       toast.error("Something went wrong 😥", { id: error });

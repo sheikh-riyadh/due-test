@@ -10,12 +10,10 @@ import DeleteDueSample from "./DeleteDueSample";
 import CountDown from "./CountDown";
 import Pagination from "../../common/Pagination";
 import Spinner from "../../common/Spinner";
-import { useGetUser } from "../../../hooks/useGetUser";
 
 const DueSampleTable = ({ search, selectedDate, sampleStatus }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [limit, setLimit] = useState(10);
-  const { user } = useGetUser();
 
   const query = new URLSearchParams({
     search,
@@ -23,7 +21,6 @@ const DueSampleTable = ({ search, selectedDate, sampleStatus }) => {
     page: currentPage,
     selectedDate: selectedDate ? selectedDate : "",
     sampleStatus,
-    email: user?.email,
   }).toString();
 
   const { data, isLoading } = useGetDueTestQuery(query);

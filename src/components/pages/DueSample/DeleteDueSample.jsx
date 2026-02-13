@@ -13,7 +13,6 @@ const DeleteDueSample = ({ deleteId }) => {
 
   const query = new URLSearchParams({
     id: deleteId,
-    email: user?.email,
   }).toString();
 
   return (
