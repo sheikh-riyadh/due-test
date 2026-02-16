@@ -10,10 +10,9 @@ const authApi = baseApi.injectEndpoints({
       }),
     }),
     logut: build.mutation({
-      query: (data) => ({
+      query: () => ({
         url: "/logout",
         method: "POST",
-        body: data,
       }),
     }),
   }),
