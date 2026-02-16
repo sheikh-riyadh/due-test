@@ -14,7 +14,6 @@ const DueSample = () => {
       <div className="p-5 flex flex-col gap-5">
         <div className="grid xl:grid-cols-2">
           <div className="flex items-center xl:flex-nowrap flex-wrap gap-10">
-            <span className="font-bold text-xl text-primary uppercase">{`records`}</span>
             <div className="flex items-center justify-center xl:flex-nowrap flex-wrap gap-5 font-bold">
               <span
                 onClick={() => setSampleStatus("Due")}
@@ -36,7 +35,7 @@ const DueSample = () => {
               />
             </div>
           </div>
-          <div className="flex items-center gap-3 justify-end mt-5 xl:mt-0">
+          <div className="flex items-center gap-5 justify-end mt-5 xl:mt-0">
             <Input
               maxLength="9"
               placeholder="Search..."

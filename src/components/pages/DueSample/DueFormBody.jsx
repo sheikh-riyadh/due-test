@@ -2,8 +2,14 @@ import PropTypes from "prop-types";
 import Input from "../../common/Input";
 import Select from "../../common/Select";
 import TextArea from "../../common/TextArea";
+import moment from "moment";
 
 const DueFormBody = ({ register }) => {
+
+const now = moment();
+const afterTwoHalfHour = moment().add(2, "hours").add(30, "minutes");
+
+
   const classes = "";
   return (
     <>
@@ -20,23 +26,26 @@ const DueFormBody = ({ register }) => {
         required
         placeholder="Test Name"
         className={classes}
+        defaultValue={"2hrs after breakfast"}
       />
       <div className="flex flex-col gap-2">
         <span className="text-primary">Collected time</span>
         <div className="grid grid-cols-2 gap-3">
           <Input
-            {...register("collectedDate")}
+            {...register("fastingDate")}
             required
             type="date"
             className={classes}
             title="Collected"
+            defaultValue={now.format("YYYY-MM-DD")}
           />
           <Input
-            {...register("collectedTime")}
+            {...register("fastingTime")}
             required
             type="time"
             className={classes}
             title="Collected time"
+            defaultValue={now.format("HH:mm")}
           />
         </div>
       </div>
@@ -50,6 +59,7 @@ const DueFormBody = ({ register }) => {
             type="date"
             className={classes}
             title="Remaining"
+            defaultValue={afterTwoHalfHour.format("YYYY-MM-DD")}
           />
           <Input
             {...register("nextCollectionTime")}
@@ -57,6 +67,7 @@ const DueFormBody = ({ register }) => {
             type="time"
             className={classes}
             title="Remaining time"
+            defaultValue={afterTwoHalfHour.format("HH:mm")}
           />
         </div>
       </div>
@@ -65,7 +76,7 @@ const DueFormBody = ({ register }) => {
         <Select
           {...register("drug")}
           defaultValue="No"
-          options={["No", "Yes"]}
+          options={["No", "Medicine", "Insulin", "Insulin + Medicine"]}
           label="Any diabetic drug?"
         />
 

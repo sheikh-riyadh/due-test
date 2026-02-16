@@ -63,13 +63,13 @@ const DueSampleTable = ({ search, selectedDate, sampleStatus }) => {
               {
                 name: "Drug Status",
                 render: ({ item }) => {
-                  return <span>{item?.drug}</span>;
+                  return <span>{item?.drug ? item?.drug : "N/A"}</span>;
                 },
               },
               {
                 render: ({ item }) => {
                   return item.status !== "Collected" ? (
-                    <CountDown data={item} />
+                    <CountDown data={item}/>
                   ) : (
                     <span>{moment(item?.updatedAtt).format("ll")}</span>
                   );

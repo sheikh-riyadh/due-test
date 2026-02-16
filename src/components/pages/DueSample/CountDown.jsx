@@ -31,8 +31,8 @@ const CountDown = ({ data }) => {
     const secs = duration.seconds();
 
     return days > 0
-      ? `${days}:D ${hours}:H ${minutes}:M ${secs}:SEC`
-      : `${hours}H:${minutes}M:${secs}:SEC`;
+      ? `${days}:${hours}:${minutes}:${secs}`
+      : `${hours}:${minutes}:${secs}`;
   };
 
   return (

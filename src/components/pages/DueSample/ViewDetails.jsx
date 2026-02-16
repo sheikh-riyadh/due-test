@@ -97,7 +97,7 @@ const ViewDetails = ({ item }) => {
               </div>
               <div className="bg-[#1C2822] p-3 rounded-md">
                 <span>
-                  {item?.note ? item?.note : "There is no patient node."}
+                  {item?.note ? item?.note : "There is no patient note."}
                 </span>
               </div>
             </div>
