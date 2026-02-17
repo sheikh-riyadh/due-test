@@ -10,6 +10,7 @@ import only_head from "../assets/only-head.png";
 import { useGetUser } from "../hooks/useGetUser";
 import { useLogutMutation } from "../store/services/auth/authApi";
 import SubmitButton from "../components/common/SubmitButton";
+import { FaSpinner } from "react-icons/fa6";
 
 const Sidebar = ({ visibleArrow = true, setIsModalOpen = () => {} }) => {
   const [isOpen, setIsOpen] = useState(true);
@@ -17,7 +18,7 @@ const Sidebar = ({ visibleArrow = true, setIsModalOpen = () => {} }) => {
 
   const { pathname } = useLocation();
   const { user } = useGetUser();
-  const [handleLogout, {isLoading}] = useLogutMutation();
+  const [handleLogout, { isLoading }] = useLogutMutation();
 
   const [isOff, setIsOff] = useState(false);
   useEffect(() => {
@@ -29,7 +30,7 @@ const Sidebar = ({ visibleArrow = true, setIsModalOpen = () => {} }) => {
 
   const logout = async () => {
     const result = await handleLogout();
-    if (result?.data?.message=="Logged out successfully") {
+    if (result?.data?.message == "Logged out successfully") {
       dispatch(removeUser());
     }
   };
@@ -118,14 +119,17 @@ const Sidebar = ({ visibleArrow = true, setIsModalOpen = () => {} }) => {
               </div>
             </div>
             <div
-              className={`flex gap-3 items-center bg-[#047857] rounded-lg text-xl text-[#fff] p-4`}
+              className={`flex cursor-pointer gap-3 items-center bg-[#047857] rounded-lg text-xl text-[#fff] p-4`}
               onClick={logout}
             >
-              
-              <SubmitButton loadingText="Logging out..." isLoading={isLoading} className={"flex items-center gap-3"}>
+              {isLoading ? (
+                <FaSpinner className="animate-spin"/>
+              ) : (
                 <FaSignOutAlt className="text-base" />
-                Logout
-              </SubmitButton>
+              )}
+              <button className="font-semibold" style={{ display: isOpen ? "block" : "none" }}>
+                {isLoading?"Loging out...":"Logout"}
+              </button>
             </div>
           </div>
         </div>

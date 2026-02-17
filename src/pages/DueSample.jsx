@@ -38,7 +38,7 @@ const DueSample = () => {
           <div className="flex items-center gap-5 justify-end mt-5 xl:mt-0">
             <Input
               maxLength="9"
-              placeholder="Search..."
+              placeholder="Update..."
               className="bg-[#1C2822]"
               onChange={handleChange}
             />

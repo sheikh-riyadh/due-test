@@ -5,12 +5,16 @@ import SubmitButton from "../../common/SubmitButton";
 import DueFormBody from "./DueFormBody";
 import { useAddDueTestMutation } from "../../../store/services/dueApi/dueApi";
 
-const DueForm = ({ setIsModalOpen }) => {
-  const [createPopularTest, { isLoading }] = useAddDueTestMutation();
-  const { register, handleSubmit } = useForm();
+const DueForm = ({ setIsModalOpen, invoice }) => {
+  const [addTest, { isLoading }] = useAddDueTestMutation();
+  const { register, handleSubmit } = useForm({
+    defaultValues: {
+      invoice,
+    },
+  });
 
-  const handleCreatePopular = async (data) => {
-    const result = await createPopularTest({ data });
+  const handleAddTest = async (data) => {
+    const result = await addTest({ data });
     if (result?.data?.acknowledged) {
       toast.success("Test added successfully", { id: "success" });
       setIsModalOpen(false);
@@ -21,7 +25,7 @@ const DueForm = ({ setIsModalOpen }) => {
   return (
     <div>
       <form
-        onSubmit={handleSubmit(handleCreatePopular)}
+        onSubmit={handleSubmit(handleAddTest)}
         className="flex flex-col gap-3"
       >
         <DueFormBody register={register} />
@@ -33,6 +37,7 @@ const DueForm = ({ setIsModalOpen }) => {
 
 DueForm.propTypes = {
   setIsModalOpen: PropTypes.func,
+  invoice: PropTypes.string,
 };
 
 export default DueForm;
