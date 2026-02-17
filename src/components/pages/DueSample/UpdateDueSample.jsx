@@ -8,9 +8,9 @@ import SubmitButton from "../../common/SubmitButton";
 import DueFormBody from "./DueFormBody";
 import { useUpdateDueTestMutation } from "../../../store/services/dueApi/dueApi";
 
-const UpdateDueSample = ({ item }) => {
+const UpdateDueSample = ({ item, isOpen }) => {
   const { register, setValue, handleSubmit } = useForm();
-  const [isFormOpen, setIsFormOpen] = useState(false);
+  const [isFormOpen, setIsFormOpen] = useState(isOpen ? isOpen : false);
 
   const [updatePopular, { isLoading }] = useUpdateDueTestMutation();
 
@@ -82,6 +82,7 @@ const UpdateDueSample = ({ item }) => {
 
 UpdateDueSample.propTypes = {
   item: PropTypes.object,
+  isOpen: PropTypes.bool,
 };
 
 export default UpdateDueSample;

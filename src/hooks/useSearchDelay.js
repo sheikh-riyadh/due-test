@@ -12,7 +12,7 @@ export const useSearchDelay = () => {
   useEffect(() => {
     const timeout = setTimeout(() => {
       setSearchValue(inputValue.trim());
-    }, 500);
+    },0);
 
     return () => clearTimeout(timeout);
   }, [inputValue]);

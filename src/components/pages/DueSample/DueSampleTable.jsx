@@ -11,16 +11,16 @@ import CountDown from "./CountDown";
 import Pagination from "../../common/Pagination";
 import Spinner from "../../common/Spinner";
 
-const DueSampleTable = ({ search, selectedDate, sampleStatus }) => {
+const DueSampleTable = ({ invoice, date, status }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [limit, setLimit] = useState(10);
 
   const query = new URLSearchParams({
-    search,
+    invoice,
     limit,
     page: currentPage,
-    selectedDate: selectedDate ? selectedDate : "",
-    sampleStatus,
+    date: date ? date : "",
+    status,
   }).toString();
 
   const { data, isLoading } = useGetDueTestQuery(query);
@@ -69,7 +69,7 @@ const DueSampleTable = ({ search, selectedDate, sampleStatus }) => {
               {
                 render: ({ item }) => {
                   return item.status !== "Collected" ? (
-                    <CountDown data={item}/>
+                    <CountDown data={item} />
                   ) : (
                     <span>{moment(item?.updatedAtt).format("ll")}</span>
                   );
@@ -107,7 +107,12 @@ const DueSampleTable = ({ search, selectedDate, sampleStatus }) => {
                   return (
                     <div className="flex items-center gap-2">
                       <ViewDetails item={item} />
-                      <UpdateDueSample item={item} />
+                      <UpdateDueSample
+                        item={item}
+                        isOpen={
+                          invoice && item?.invoice === invoice ? true : false
+                        }
+                      />
                       <DeleteDueSample deleteId={item?._id} />
                     </div>
                   );
@@ -131,8 +136,8 @@ const DueSampleTable = ({ search, selectedDate, sampleStatus }) => {
   );
 };
 DueSampleTable.propTypes = {
-  search: PropTypes.string,
-  sampleStatus: PropTypes.string,
-  selectedDate: PropTypes.string,
+  invoice: PropTypes.string,
+  status: PropTypes.string,
+  date: PropTypes.string,
 };
 export default DueSampleTable;
