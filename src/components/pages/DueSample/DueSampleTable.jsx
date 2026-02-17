@@ -110,7 +110,9 @@ const DueSampleTable = ({ invoice, date, status }) => {
                       <UpdateDueSample
                         item={item}
                         isOpen={
-                          invoice && item?.invoice === invoice ? true : false
+                          item?.invoice === invoice && data?.data?.length === 1
+                            ? true
+                            : false
                         }
                       />
                       <DeleteDueSample deleteId={item?._id} />

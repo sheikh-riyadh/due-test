@@ -10,7 +10,7 @@ import { useUpdateDueTestMutation } from "../../../store/services/dueApi/dueApi"
 
 const UpdateDueSample = ({ item, isOpen }) => {
   const { register, setValue, handleSubmit } = useForm();
-  const [isFormOpen, setIsFormOpen] = useState(isOpen ? isOpen : false);
+  const [isFormOpen, setIsFormOpen] = useState(isOpen);
 
   const [updatePopular, { isLoading }] = useUpdateDueTestMutation();
 
