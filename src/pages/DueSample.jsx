@@ -8,6 +8,7 @@ const DueSample = () => {
   const { handleChange, searchValue } = useSearchDelay();
   const [status, setStatus] = useState("Due");
   const [date, setDate] = useState();
+
   return (
     <div>
       <div className="p-5 flex flex-col gap-5">
