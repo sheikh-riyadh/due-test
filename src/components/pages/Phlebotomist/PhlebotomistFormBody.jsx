@@ -73,7 +73,7 @@ const PhlebotomistFormBody = ({ register, photo, setPhoto }) => {
         className={classes}
       />
       <Input
-        {...register("secret")}
+        {...register("phlebotomist_id")}
         maxLength="9"
         minLength="6"
         required
