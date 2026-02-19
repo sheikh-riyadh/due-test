@@ -36,18 +36,18 @@ const ViewDetails = ({ item }) => {
                 <>
                   <div className="flex items-center gap-2">
                     <span>
-                      Collected time: {moment(item?.collectedDate).format("ll")}
+                      Fasting time: {moment(item?.fastingDate).format("ll")}
                     </span>
                     <span>
-                      {moment(item?.collectedTime, "HH:mm").format("hh:mm A")}
+                      {moment(item?.fastingTime, "HH:mm").format("hh:mm A")}
                     </span>
                   </div>
                   <div className="flex items-center gap-2">
                     <span>
-                      Completed time: {moment(item?.collectedDate).format("ll")}
+                      2Hrs time: {moment(item?.fastingDate).format("ll")}
                     </span>
                     <span>
-                      {moment(item?.collectedTime, "HH:mm").format("hh:mm A")}
+                      {moment(item?.fastingTime, "HH:mm").format("hh:mm A")}
                     </span>
                   </div>
                 </>
@@ -56,11 +56,10 @@ const ViewDetails = ({ item }) => {
                   <div className="flex gap-2">
                     <div className="flex items-center gap-2">
                       <span>
-                        Collected time:{" "}
-                        {moment(item?.collectedDate).format("ll")}
+                        Fasting time: {moment(item?.fastingDate).format("ll")}
                       </span>
                       <span>
-                        {moment(item?.collectedTime, "HH:mm").format("hh:mm A")}
+                        {moment(item?.fastingTime, "HH:mm").format("hh:mm A")}
                       </span>
                     </div>
                     <div>

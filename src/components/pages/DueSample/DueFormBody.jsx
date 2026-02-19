@@ -92,7 +92,7 @@ const afterTwoHalfHour = moment().add(2, "hours").add(30, "minutes");
       <TextArea {...register("note")} placeholder="Note:" />
 
       <Input
-        {...register("phlebotomist_id")}
+        {...register("secret")}
         type="password"
         required
         placeholder="Phlebotomist code"

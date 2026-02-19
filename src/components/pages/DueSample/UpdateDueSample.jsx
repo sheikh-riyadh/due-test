@@ -40,7 +40,7 @@ const UpdateDueSample = ({ item, isOpen }) => {
       if (Object.prototype.hasOwnProperty.call(item, key)) {
         if (
           key === "_id" ||
-          key === "phlebotomist_id" ||
+          key === "secret" ||
           key === "phlebotomist"
         ) {
           continue;

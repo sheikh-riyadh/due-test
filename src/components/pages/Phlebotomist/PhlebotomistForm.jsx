@@ -13,7 +13,7 @@ const PhlebotomistForm = ({ setIsModalOpen }) => {
   const [addPhle, { isLoading }] = useAddPhlebotomistMutation();
 
   const handleAddPhlebotomist = async (data) => {
-
+    
     const result = await addPhle({...data,photo});
     if (result?.data?.acknowledged) {
       toast.success("successfully added", { id: "success" });

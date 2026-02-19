@@ -8,12 +8,14 @@ const authApi = baseApi.injectEndpoints({
         method: "POST",
         body: data,
       }),
+      invalidatesTags:["due","overview","phlebotomist"]
     }),
     logut: build.mutation({
       query: () => ({
         url: "/logout",
         method: "POST",
       }),
+      invalidatesTags:["due","overview","phlebotomist"]
     }),
   }),
 });

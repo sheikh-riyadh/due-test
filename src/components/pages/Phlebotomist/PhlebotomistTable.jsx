@@ -6,12 +6,10 @@ import PropTypes from "prop-types";
 import { useGetPhlebotomistQuery } from "../../../store/services/phlebotomistApi/phlebotomistApi";
 import DeletePhlebotomist from "./DeletePhlebotomist";
 import UpdatePhlebotomist from "./UpdatePhlebotomist";
-import { useGetUser } from "../../../hooks/useGetUser";
 
 const PhlebotomistTable = ({ search }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [limit, setLimit] = useState(10);
-  const { user } = useGetUser();
 
   const query = new URLSearchParams({
     search,
@@ -19,7 +17,6 @@ const PhlebotomistTable = ({ search }) => {
     page: currentPage,
   }).toString();
 
-  
   const { data, isLoading } = useGetPhlebotomistQuery(query);
 
   const pages = Math.ceil(Math.abs(data?.total ?? 0) / parseInt(limit));
@@ -40,10 +37,8 @@ const PhlebotomistTable = ({ search }) => {
               {
                 name: "Phlebotomist ID",
                 render: ({ item }) => {
-                  return user?.role == "admin" ? (
-                    <span>{item?.phlebotomist_id}</span>
-                  ) : (
-                    <span>*********</span>
+                  return (
+                    <span>{item?.phlebotomist_id ?? "*************"}</span>
                   );
                 },
               },
