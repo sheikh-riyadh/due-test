@@ -28,7 +28,7 @@ const DueSampleTable = ({ invoice, date, status }) => {
   const { data, isLoading } = useGetDueTestQuery(query);
   const pages = Math.ceil(Math.abs(data?.total ?? 0) / parseInt(limit));
 
-  cosnt item = data?.data?.find(sample=>sample?.invoice === invoice)
+  const item = data?.data?.find(sample=>sample?.invoice === invoice)
   const isUpdated = item?.invoice === invoice && data?.data?.length === 1;
   const isAdd = invoice !== item.invoice && data?.data?.length === 0;
 
