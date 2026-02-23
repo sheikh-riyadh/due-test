@@ -9,7 +9,7 @@ import DueFormBody from "./DueFormBody";
 import { useUpdateDueTestMutation } from "../../../store/services/dueApi/dueApi";
 import DueForm from "./DueForm";
 
-const UpdateDueSample = ({ item, isUpdated,invoice,isAdd }) => {
+const UpdateDueSample = ({ item, isUpdated, invoice, isAdd }) => {
   const { register, setValue, handleSubmit } = useForm();
   const [isFormOpen, setIsFormOpen] = useState(isUpdated);
 
@@ -36,6 +36,8 @@ const UpdateDueSample = ({ item, isUpdated,invoice,isAdd }) => {
       toast.error("Something went wrong 😥", { id: error });
     }
   };
+
+  console.log({isAdd, isModalOpen})
 
   useEffect(() => {
     for (const key in item) {
