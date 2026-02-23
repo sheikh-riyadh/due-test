@@ -16,8 +16,6 @@ const UpdateDueSample = ({ item, isUpdated,invoice,isAdd }) => {
   const [isModalOpen, setIsModalOpen] = useState(isAdd);
   const [updatePopular, { isLoading }] = useUpdateDueTestMutation();
 
-  console.log(invoice)
-
   const handleUpdatePopular = async (data) => {
     const query = {
       id: item?._id,
