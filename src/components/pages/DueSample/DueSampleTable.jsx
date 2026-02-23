@@ -109,8 +109,14 @@ const DueSampleTable = ({ invoice, date, status }) => {
                       <ViewDetails item={item} />
                       <UpdateDueSample
                         item={item}
-                        isOpen={
+                        isUpdated={
                           item?.invoice === invoice && data?.data?.length === 1
+                            ? true
+                            : false
+                        }
+                        invoice={invoice}
+                        isAdd={
+                          item?.invoice !== invoice && data?.data?.length === 0
                             ? true
                             : false
                         }
