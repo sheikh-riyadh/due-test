@@ -15,6 +15,9 @@ const DueSampleTable = ({ invoice, date, status }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [limit, setLimit] = useState(10);
 
+  const isUpdated = item?.invoice === invoice && data?.data?.length === 1;
+  const isAdd = invoice && data?.data?.length === 0;
+
   const query = new URLSearchParams({
     invoice,
     limit,
@@ -49,11 +52,10 @@ const DueSampleTable = ({ invoice, date, status }) => {
                 render: ({ item }) => {
                   return (
                     <span
-                      className={`capitalize ${
-                        item?.status == "Collected"
-                          ? "bg-[#047857] px-5 rounded-full py-1"
-                          : "bg-[#F2A65A] px-5 rounded-full py-1 text-white"
-                      }`}
+                      className={`capitalize ${item?.status == "Collected"
+                        ? "bg-[#047857] px-5 rounded-full py-1"
+                        : "bg-[#F2A65A] px-5 rounded-full py-1 text-white"
+                        }`}
                     >
                       {item?.status}
                     </span>
@@ -109,17 +111,9 @@ const DueSampleTable = ({ invoice, date, status }) => {
                       <ViewDetails item={item} />
                       <UpdateDueSample
                         item={item}
-                        isUpdated={
-                          item?.invoice === invoice && data?.data?.length === 1
-                            ? true
-                            : false
-                        }
+                        isUpdated={isUpdated}
                         invoice={invoice}
-                        isAdd={
-                            invoice && data?.data?.length === 0
-                            ? true
-                            : false
-                        }
+                        isAdd={isAdd}
                       />
                       <DeleteDueSample deleteId={item?._id} />
                     </div>
