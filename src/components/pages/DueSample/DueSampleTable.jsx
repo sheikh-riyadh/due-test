@@ -31,8 +31,6 @@ const DueSampleTable = ({ invoice, date, status }) => {
   const item = data?.data?.find(sample=>sample?.invoice === invoice)
   const isUpdated = item?.invoice === invoice && data?.data?.length === 1;
   const isAdd = invoice !== item?.invoice && data?.data?.length === 0;
-
-  console.log(isAdd)
   
 
   return (
