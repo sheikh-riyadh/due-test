@@ -116,7 +116,7 @@ const DueSampleTable = ({ invoice, date, status }) => {
                         }
                         invoice={invoice}
                         isAdd={
-                          item?.invoice !== invoice && data?.data?.length === 0
+                            invoice && data?.data?.length === 0
                             ? true
                             : false
                         }
