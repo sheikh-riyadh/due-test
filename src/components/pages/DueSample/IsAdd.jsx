@@ -1,17 +1,10 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Modal from "../../modals/Modal";
 import PropTypes from "prop-types";
 import DueForm from "./DueForm";
 
-const IsAdd = ({ invoice, isOpen }) => {
+const IsAdd = ({ invoice, isOpen}) => {
   const [isModalOpen, setIsModalOpen] = useState(isOpen);
-
-  useEffect(() => {
-    setIsModalOpen(isOpen);
-  }, [isOpen]);
-
-  if (!isModalOpen) return null;
-
   return (
     <>
       {isModalOpen && (
@@ -31,6 +24,7 @@ const IsAdd = ({ invoice, isOpen }) => {
 IsAdd.propTypes = {
   invoice: PropTypes.string,
   isOpen: PropTypes.bool,
+  item:PropTypes.object
 };
 
 export default IsAdd;

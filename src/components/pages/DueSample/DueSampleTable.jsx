@@ -112,8 +112,6 @@ const DueSampleTable = ({ invoice, date, status }) => {
                         item={item}
                         isUpdated={
                           item?.invoice === invoice && data?.data?.length === 1
-                            ? true
-                            : false
                         }
                         invoice={invoice}
                       />
@@ -124,13 +122,6 @@ const DueSampleTable = ({ invoice, date, status }) => {
               },
             ]}
           />
-          {
-            <IsAdd
-              invoice={invoice}
-              isOpen={invoice && data?.data?.length === 0 ? true : false}
-            />
-          }
-
           <Pagination
             currentPage={currentPage}
             setCurrentPage={setCurrentPage}
@@ -141,6 +132,9 @@ const DueSampleTable = ({ invoice, date, status }) => {
         </div>
       ) : (
         <Spinner />
+      )}
+      {invoice.length === 9 && data?.data?.length === 0 && (
+        <IsAdd isOpen={true} invoice={invoice} />
       )}
     </div>
   );
