@@ -1,21 +1,19 @@
-import { useState } from "react";
-import Button from "../../common/Button";
+import { useEffect, useState } from "react";
 import Modal from "../../modals/Modal";
-import DueForm from "./DueForm";
 import PropTypes from "prop-types";
+import DueForm from "./DueForm";
 
-const AddTest = ({invoice=""}) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
+const IsAdd = ({ invoice, isOpen }) => {
+  const [isModalOpen, setIsModalOpen] = useState(isOpen);
+
+  useEffect(() => {
+    setIsModalOpen(isOpen);
+  }, [isOpen]);
+
+  if (!isModalOpen) return null;
 
   return (
     <>
-        <Button
-          onClick={() => setIsModalOpen((prev) => !prev)}
-          className="w-36"
-        >
-          Add 2hrs
-        </Button>
-
       {isModalOpen && (
         <Modal
           title={"Add Test"}
@@ -30,8 +28,9 @@ const AddTest = ({invoice=""}) => {
   );
 };
 
-AddTest.propTypes = {
+IsAdd.propTypes = {
   invoice: PropTypes.string,
+  isOpen: PropTypes.bool,
 };
 
-export default AddTest;
+export default IsAdd;

@@ -7,13 +7,11 @@ import Modal from "../../modals/Modal";
 import SubmitButton from "../../common/SubmitButton";
 import DueFormBody from "./DueFormBody";
 import { useUpdateDueTestMutation } from "../../../store/services/dueApi/dueApi";
-import DueForm from "./DueForm";
 
-const UpdateDueSample = ({ item, isUpdated, invoice, isAdd }) => {
+const UpdateDueSample = ({ item, isUpdated}) => {
   const { register, setValue, handleSubmit } = useForm();
   const [isFormOpen, setIsFormOpen] = useState(isUpdated);
 
-  const [isModalOpen, setIsModalOpen] = useState(isAdd);
   const [updatePopular, { isLoading }] = useUpdateDueTestMutation();
 
   const handleUpdatePopular = async (data) => {
@@ -36,8 +34,6 @@ const UpdateDueSample = ({ item, isUpdated, invoice, isAdd }) => {
       toast.error("Something went wrong 😥", { id: error });
     }
   };
-
-  console.log({isAdd, isModalOpen})
 
   useEffect(() => {
     for (const key in item) {
@@ -78,17 +74,6 @@ const UpdateDueSample = ({ item, isUpdated, invoice, isAdd }) => {
             <DueFormBody register={register} />
             <SubmitButton isLoading={isLoading}>Update</SubmitButton>
           </form>
-        </Modal>
-      )}
-
-      {isModalOpen && (
-        <Modal
-          title={"Add Test"}
-          className="w-[350px] xl:w-[500px]"
-          onClose={setIsModalOpen}
-          isOpen={isModalOpen}
-        >
-          <DueForm invoice={invoice} setIsModalOpen={setIsModalOpen} />
         </Modal>
       )}
     </>

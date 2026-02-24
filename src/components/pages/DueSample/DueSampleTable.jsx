@@ -10,12 +10,11 @@ import DeleteDueSample from "./DeleteDueSample";
 import CountDown from "./CountDown";
 import Pagination from "../../common/Pagination";
 import Spinner from "../../common/Spinner";
+import IsAdd from "./IsAdd";
 
 const DueSampleTable = ({ invoice, date, status }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [limit, setLimit] = useState(10);
-  
-  
 
   const query = new URLSearchParams({
     invoice,
@@ -27,11 +26,6 @@ const DueSampleTable = ({ invoice, date, status }) => {
 
   const { data, isLoading } = useGetDueTestQuery(query);
   const pages = Math.ceil(Math.abs(data?.total ?? 0) / parseInt(limit));
-
-  const item = data?.data?.find(sample=>sample?.invoice === invoice)
-  const isUpdated = item?.invoice === invoice && data?.data?.length === 1;
-  const isAdd = invoice !== item?.invoice && data?.data?.length === 0;
-  
 
   return (
     <div className="rounded-md shadow-md">
@@ -56,10 +50,11 @@ const DueSampleTable = ({ invoice, date, status }) => {
                 render: ({ item }) => {
                   return (
                     <span
-                      className={`capitalize ${item?.status == "Collected"
-                        ? "bg-[#047857] px-5 rounded-full py-1"
-                        : "bg-[#F2A65A] px-5 rounded-full py-1 text-white"
-                        }`}
+                      className={`capitalize ${
+                        item?.status == "Collected"
+                          ? "bg-[#047857] px-5 rounded-full py-1"
+                          : "bg-[#F2A65A] px-5 rounded-full py-1 text-white"
+                      }`}
                     >
                       {item?.status}
                     </span>
@@ -115,9 +110,12 @@ const DueSampleTable = ({ invoice, date, status }) => {
                       <ViewDetails item={item} />
                       <UpdateDueSample
                         item={item}
-                        isUpdated={isUpdated}
+                        isUpdated={
+                          item?.invoice === invoice && data?.data?.length === 1
+                            ? true
+                            : false
+                        }
                         invoice={invoice}
-                        isAdd={isAdd}
                       />
                       <DeleteDueSample deleteId={item?._id} />
                     </div>
@@ -126,6 +124,12 @@ const DueSampleTable = ({ invoice, date, status }) => {
               },
             ]}
           />
+          {
+            <IsAdd
+              invoice={invoice}
+              isOpen={invoice && data?.data?.length === 0 ? true : false}
+            />
+          }
 
           <Pagination
             currentPage={currentPage}
