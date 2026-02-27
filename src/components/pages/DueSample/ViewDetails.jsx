@@ -44,10 +44,7 @@ const ViewDetails = ({ item }) => {
                   </div>
                   <div className="flex items-center gap-2">
                     <span>
-                      2Hrs time: {moment(item?.fastingDate).format("ll")}
-                    </span>
-                    <span>
-                      {moment(item?.fastingTime, "HH:mm").format("hh:mm A")}
+                      Completed time: {moment(item?.updatedAt).format("DD-MM-YYYY hh:mm A")}
                     </span>
                   </div>
                 </>

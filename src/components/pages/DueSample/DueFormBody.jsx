@@ -5,8 +5,6 @@ import TextArea from "../../common/TextArea";
 import moment from "moment";
 
 const DueFormBody = ({ register }) => {
-
-const now = moment();
 const afterTwoHalfHour = moment().add(2, "hours").add(30, "minutes");
 
 
@@ -28,28 +26,6 @@ const afterTwoHalfHour = moment().add(2, "hours").add(30, "minutes");
         className={classes}
         defaultValue={"2hrs after breakfast"}
       />
-      <div className="flex flex-col gap-2">
-        <span className="text-primary">Collected time</span>
-        <div className="grid grid-cols-2 gap-3">
-          <Input
-            {...register("fastingDate")}
-            required
-            type="date"
-            className={classes}
-            title="Collected"
-            defaultValue={now.format("YYYY-MM-DD")}
-          />
-          <Input
-            {...register("fastingTime")}
-            required
-            type="time"
-            className={classes}
-            title="Collected time"
-            defaultValue={now.format("HH:mm")}
-          />
-        </div>
-      </div>
-
       <div className="flex flex-col gap-2">
         <span className="text-primary">Remaining Time</span>
         <div className="grid grid-cols-2 gap-3">

@@ -4,9 +4,12 @@ import toast from "react-hot-toast";
 import SubmitButton from "../../common/SubmitButton";
 import DueFormBody from "./DueFormBody";
 import { useAddDueTestMutation } from "../../../store/services/dueApi/dueApi";
+import moment from "moment";
 
 const DueForm = ({ setIsModalOpen, invoice }) => {
   const [addTest, { isLoading }] = useAddDueTestMutation();
+  const now = moment();
+
   const { register, handleSubmit } = useForm({
     defaultValues: {
       invoice,
@@ -14,7 +17,12 @@ const DueForm = ({ setIsModalOpen, invoice }) => {
   });
 
   const handleAddTest = async (data) => {
-    const result = await addTest({ data });
+    const finalData = {
+      ...data,
+      fastingDate: now.format("YYYY-MM-DD"),
+      fastingTime: now.format("HH:mm"),
+    };
+    const result = await addTest({ data: finalData });
     if (result?.data?.acknowledged) {
       toast.success("Test added successfully", { id: "success" });
       setIsModalOpen(false);
