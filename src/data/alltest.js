@@ -1,4 +1,4 @@
-const tests = [
+const alltest = [
 "2hrs after breakfast",
 "ACR",
 "Albumin",
@@ -29,7 +29,6 @@ const tests = [
 "FSH",
 "FT3",
 "FT4",
-"Glucose (2 Hours After Breakfast)",
 "H. pylori",
 "HAV (ELISA)",
 "HBsAg (ELISA)",
@@ -80,3 +79,5 @@ const tests = [
 "Vitamin D3",
 "Widal"
 ];
+
+export default alltest

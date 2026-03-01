@@ -6,13 +6,13 @@ export const dueApi = baseApi.injectEndpoints({
       query: () => ({
         url: `/overview`,
       }),
-      providesTags: ["due", "overview"],
+      providesTags: ["overview"],
     }),
     getDueTest: build.query({
       query: (query) => ({
         url: `/get-all-sample?${query}`,
       }),
-      providesTags: ["due", "overview"],
+      providesTags: ["due"],
     }),
     addDueTest: build.mutation({
       query: (data) => ({
@@ -28,7 +28,7 @@ export const dueApi = baseApi.injectEndpoints({
         method: "PATCH",
         body: data,
       }),
-      invalidatesTags: ["due"],
+      invalidatesTags: ["due","overview"],
     }),
     deleteDueTest: build.mutation({
       query: (data) => ({

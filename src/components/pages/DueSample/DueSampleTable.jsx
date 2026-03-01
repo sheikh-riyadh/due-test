@@ -10,14 +10,16 @@ import DeleteDueSample from "./DeleteDueSample";
 import CountDown from "./CountDown";
 import Pagination from "../../common/Pagination";
 import Spinner from "../../common/Spinner";
+import { useGetInvoice } from "../../../hooks/useGetInvoice";
 import IsAdd from "./IsAdd";
 
-const DueSampleTable = ({ invoice, date, status }) => {
+const DueSampleTable = ({ date, status }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [limit, setLimit] = useState(10);
+  const { invoice } = useGetInvoice();
 
   const query = new URLSearchParams({
-    invoice,
+    invoice: invoice?.length === 9 ? invoice : "",
     limit,
     page: currentPage,
     date: date ? date : "",
@@ -111,9 +113,10 @@ const DueSampleTable = ({ invoice, date, status }) => {
                       <UpdateDueSample
                         item={item}
                         isUpdated={
-                          item?.invoice === invoice && data?.data?.length === 1
+                          invoice?.length === 9 &&
+                          invoice === item?.invoice &&
+                          data?.data?.length === 1
                         }
-                        invoice={invoice}
                       />
                       <DeleteDueSample deleteId={item?._id} />
                     </div>
@@ -133,9 +136,8 @@ const DueSampleTable = ({ invoice, date, status }) => {
       ) : (
         <Spinner />
       )}
-      {invoice.length === 9 && data?.data?.length === 0 && (
-        <IsAdd isOpen={true} invoice={invoice} />
-      )}
+
+      {invoice?.length === 9 && data?.data?.length === 0 && <IsAdd />}
     </div>
   );
 };
@@ -143,5 +145,6 @@ DueSampleTable.propTypes = {
   invoice: PropTypes.string,
   status: PropTypes.string,
   date: PropTypes.string,
+  setValue: PropTypes.func,
 };
 export default DueSampleTable;

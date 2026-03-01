@@ -1,13 +1,19 @@
 import { useState } from "react";
-import { useSearchDelay } from "../hooks/useSearchDelay";
 import Input from "../components/common/Input";
 import AddTest from "../components/pages/DueSample/AddTest";
 import DueSampleTable from "../components/pages/DueSample/DueSampleTable";
+import { useDispatch } from "react-redux";
+import { addInvoice } from "../store/features/invoice/invoiceSlice";
 
 const DueSample = () => {
-  const { handleChange, searchValue } = useSearchDelay();
   const [status, setStatus] = useState("Due");
   const [date, setDate] = useState();
+  const dispatch = useDispatch();
+
+  const handleInvoice = (e) => {
+    dispatch(addInvoice(e.target.value));
+    e.target.value = "";
+  };
 
   return (
     <div>
@@ -37,17 +43,18 @@ const DueSample = () => {
           </div>
           <div className="flex items-center gap-5 justify-end mt-5 xl:mt-0">
             <Input
+              onChange={handleInvoice}
               maxLength="9"
               placeholder="Search..."
               className="bg-[#1C2822]"
-              onChange={handleChange}
+              autoFocus
             />
 
             <AddTest />
           </div>
         </div>
         <div className="bg-[#1f2e2c] rounded-sm overflow-hidden">
-          <DueSampleTable invoice={searchValue} date={date} status={status} />
+          <DueSampleTable date={date} status={status} />
         </div>
       </div>
     </div>

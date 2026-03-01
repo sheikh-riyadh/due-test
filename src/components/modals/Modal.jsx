@@ -2,6 +2,8 @@ import { useEffect } from "react";
 import PropTypes from "prop-types";
 import { FaCircleXmark } from "react-icons/fa6";
 import cn from "../../utils/cn";
+import { useDispatch } from "react-redux";
+import { removeInvoice } from "../../store/features/invoice/invoiceSlice";
 
 const Modal = ({
   isOpen,
@@ -11,6 +13,8 @@ const Modal = ({
   children,
   isOutsideClick = true,
 }) => {
+  const dispatch = useDispatch();
+
   useEffect(() => {
     const handleOutsideClick = (e) => {
       if (
@@ -38,14 +42,16 @@ const Modal = ({
       <div
         className={cn(
           "bg-[#171f12] rounded-lg p-5 shadow-lg  overflow-y-auto border border-[#1f2e2c]",
-          className
+          className,
         )}
       >
         <div className="flex flex-col gap-5">
           <div className="flex items-center justify-between text-white">
             <span className="font-bold text-primary">{title}</span>
             <FaCircleXmark
-              onClick={() => onClose()}
+              onClick={() => {
+                (onClose(), dispatch(removeInvoice()));
+              }}
               className="text-2xl text-primary duration-300 cursor-pointer"
             />
           </div>

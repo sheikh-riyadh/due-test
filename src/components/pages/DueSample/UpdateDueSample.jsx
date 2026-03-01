@@ -7,11 +7,14 @@ import Modal from "../../modals/Modal";
 import SubmitButton from "../../common/SubmitButton";
 import DueFormBody from "./DueFormBody";
 import { useUpdateDueTestMutation } from "../../../store/services/dueApi/dueApi";
+import { useDispatch } from "react-redux";
+import { removeInvoice } from "../../../store/features/invoice/invoiceSlice";
 
-const UpdateDueSample = ({ item, isUpdated}) => {
+const UpdateDueSample = ({ item, isUpdated = false }) => {
   const { register, setValue, handleSubmit } = useForm();
   const [isFormOpen, setIsFormOpen] = useState(isUpdated);
 
+  const dispatch = useDispatch();
   const [updatePopular, { isLoading }] = useUpdateDueTestMutation();
 
   const handleUpdatePopular = async (data) => {
@@ -23,6 +26,7 @@ const UpdateDueSample = ({ item, isUpdated}) => {
       const result = await updatePopular(query);
       if (result?.data?.acknowledged) {
         toast.success("Update test successfully 😀", { id: "success" });
+        dispatch(removeInvoice());
       } else {
         toast.error(
           result?.error?.data?.message
@@ -30,19 +34,17 @@ const UpdateDueSample = ({ item, isUpdated}) => {
             : "Something went wrong",
         );
       }
+      dispatch(removeInvoice());
     } catch (error) {
       toast.error("Something went wrong 😥", { id: error });
+      dispatch(removeInvoice());
     }
   };
 
   useEffect(() => {
     for (const key in item) {
       if (Object.prototype.hasOwnProperty.call(item, key)) {
-        if (
-          key === "_id" ||
-          key === "secret" ||
-          key === "phlebotomist"
-        ) {
+        if (key === "_id" || key === "secret" || key === "phlebotomist") {
           continue;
         } else {
           setValue(key, item[key]);
@@ -82,9 +84,7 @@ const UpdateDueSample = ({ item, isUpdated}) => {
 
 UpdateDueSample.propTypes = {
   item: PropTypes.object,
-  isOpen: PropTypes.bool,
-  isAdd:PropTypes.bool,
-  invoice:PropTypes.string
+  isUpdated: PropTypes.bool,
 };
 
 export default UpdateDueSample;

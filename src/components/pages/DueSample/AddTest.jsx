@@ -2,9 +2,8 @@ import { useState } from "react";
 import Button from "../../common/Button";
 import Modal from "../../modals/Modal";
 import DueForm from "./DueForm";
-import PropTypes from "prop-types";
 
-const AddTest = ({invoice=""}) => {
+const AddTest = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
@@ -23,15 +22,11 @@ const AddTest = ({invoice=""}) => {
           onClose={setIsModalOpen}
           isOpen={isModalOpen}
         >
-          <DueForm invoice={invoice} setIsModalOpen={setIsModalOpen} />
+          <DueForm setIsModalOpen={setIsModalOpen} />
         </Modal>
       )}
     </>
   );
-};
-
-AddTest.propTypes = {
-  invoice: PropTypes.string,
 };
 
 export default AddTest;

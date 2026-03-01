@@ -12,8 +12,8 @@ import {
   REHYDRATE,
   persistReducer,
 } from "redux-persist";
-import themeReducer from "../features/theme/themeSlice"
 import userReducer from "../features/user/userSlice"
+import invoiceReducer from "../features/invoice/invoiceSlice"
 import { baseApi } from "../api/baseApi";
 import { imgbbApi } from "../services/imageUploadApi/imageUploadApi";
 
@@ -32,13 +32,12 @@ const sessionConfig = {
 };
 
 const rootPersistReducers = combineReducers({
-  themeReducer,
   userReducer,
 });
 
 const sessionReducers = combineReducers({
-  themeReducer,
   userReducer,
+  invoiceReducer
 });
 
 const persistedReducers = persistReducer(persistConfig, rootPersistReducers);

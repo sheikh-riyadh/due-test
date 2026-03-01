@@ -3,8 +3,8 @@ import Modal from "../../modals/Modal";
 import PropTypes from "prop-types";
 import DueForm from "./DueForm";
 
-const IsAdd = ({ invoice, isOpen}) => {
-  const [isModalOpen, setIsModalOpen] = useState(isOpen);
+const IsAdd = () => {
+  const [isModalOpen, setIsModalOpen] = useState(true);
   return (
     <>
       {isModalOpen && (
@@ -14,7 +14,7 @@ const IsAdd = ({ invoice, isOpen}) => {
           onClose={setIsModalOpen}
           isOpen={isModalOpen}
         >
-          <DueForm invoice={invoice} setIsModalOpen={setIsModalOpen} />
+          <DueForm setIsModalOpen={setIsModalOpen} />
         </Modal>
       )}
     </>
@@ -24,7 +24,7 @@ const IsAdd = ({ invoice, isOpen}) => {
 IsAdd.propTypes = {
   invoice: PropTypes.string,
   isOpen: PropTypes.bool,
-  item:PropTypes.object
+  item: PropTypes.object,
 };
 
 export default IsAdd;
