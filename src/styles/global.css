@@ -15,7 +15,6 @@ html {
 body {
   margin: 0;
   overflow-x: hidden; /* দরকার হলে */
-  
 }
 
 .dark {
@@ -93,3 +92,21 @@ body {
     transform: scale(1); /* Zoom to full size */
   }
 }
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #047857;
+  border-radius: 5px;
+}
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Here we hide scrollbar
+.bar-hidden::-webkit-scrollbar {
+  display: none;
+} */

@@ -5,6 +5,7 @@ import TextArea from "../../common/TextArea";
 import moment from "moment";
 import alltest from "../../../data/alltest";
 import { FaCircleXmark } from "react-icons/fa6";
+import { FaCheckCircle } from "react-icons/fa";
 
 const DueFormBody = ({ register, test = [], setTest }) => {
   const afterTwoHalfHour = moment().add(2, "hours").add(30, "minutes");
@@ -14,6 +15,8 @@ const DueFormBody = ({ register, test = [], setTest }) => {
     const restItem = test.filter((item) => item !== removeItem);
     setTest([...restItem]);
   };
+
+  const handleCompletedItem = () => {};
 
   const filterTest = alltest.filter((item) => !test.includes(item));
 
@@ -44,12 +47,20 @@ const DueFormBody = ({ register, test = [], setTest }) => {
         {test?.map((item) => (
           <div
             key={item}
-            className="bg-[#abd006] font-bold text-sm px-2 rounded-full flex items-center gap-2"
+            className="bg-[#abd006] font-bold text-sm px-2 py-1 rounded-full flex items-center gap-2"
           >
+            <FaCircleXmark
+              className="text-red-500 text-lg cursor-pointer"
+              onClick={() => handleRemoveItem(item)}
+              title="Remove"
+            />
             <span className="text-black">{item}</span>
-            <span className="text-red-500 cursor-pointer">
-              <FaCircleXmark onClick={() => handleRemoveItem(item)} />
-            </span>
+
+            <FaCheckCircle
+              className="text-[#1C2822] text-lg cursor-pointer"
+              onClick={() => handleCompletedItem(item)}
+              title="Complete"
+            />
           </div>
         ))}
       </div>
