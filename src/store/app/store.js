@@ -12,11 +12,11 @@ import {
   REHYDRATE,
   persistReducer,
 } from "redux-persist";
-import userReducer from "../features/user/userSlice"
-import invoiceReducer from "../features/invoice/invoiceSlice"
+import userReducer from "../features/user/userSlice";
+import invoiceReducer from "../features/invoice/invoiceSlice";
+import testReducer from "../features/dueAndCompleteTest/dueAndCompleteTestSlice";
 import { baseApi } from "../api/baseApi";
 import { imgbbApi } from "../services/imageUploadApi/imageUploadApi";
-
 
 const persistConfig = {
   key: "root",
@@ -37,7 +37,8 @@ const rootPersistReducers = combineReducers({
 
 const sessionReducers = combineReducers({
   userReducer,
-  invoiceReducer
+  invoiceReducer,
+  testReducer,
 });
 
 const persistedReducers = persistReducer(persistConfig, rootPersistReducers);

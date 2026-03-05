@@ -1,4 +1,3 @@
-import { useState } from "react";
 import PropTypes from "prop-types";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
@@ -13,8 +12,6 @@ import { removeInvoice } from "../../../store/features/invoice/invoiceSlice";
 const DueForm = ({ setIsModalOpen }) => {
   const [addTest, { isLoading }] = useAddDueTestMutation();
   const now = moment();
-
-  const [test, setTest] = useState(["2hrs after breakfast"]);
   const { invoice } = useGetInvoice();
 
   const dispatch = useDispatch();
@@ -46,7 +43,7 @@ const DueForm = ({ setIsModalOpen }) => {
         onSubmit={handleSubmit(handleAddTest)}
         className="flex flex-col gap-3"
       >
-        <DueFormBody register={register} test={test} setTest={setTest} />
+        <DueFormBody register={register}/>
         <SubmitButton isLoading={isLoading}>Save</SubmitButton>
       </form>
     </div>
