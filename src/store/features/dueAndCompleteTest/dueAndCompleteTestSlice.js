@@ -7,7 +7,7 @@ const initialState = {
   },
 };
 
-const invoiceSlice = createSlice({
+const dueAndCompleteTestSlice = createSlice({
   name: "dueAndCompleteTest",
   initialState,
   reducers: {
@@ -37,6 +37,16 @@ const invoiceSlice = createSlice({
       );
       state.value.completed = [...restItem];
     },
+    setCompletedTest: (state, action) => {
+      state.value.completed = action.payload;
+    },
+    setDueTest: (state, action) => {
+      state.value.due = action.payload;
+    },
+    clearTest: (state) => {
+      state.value.completed = [];
+      state.value.due = [];
+    },
   },
 });
 
@@ -46,6 +56,9 @@ export const {
   addCompleteTest,
   removeDueTest,
   removeCompleteTest,
-} = invoiceSlice.actions;
+  setCompletedTest,
+  setDueTest,
+  clearTest,
+} = dueAndCompleteTestSlice.actions;
 
-export default invoiceSlice.reducer;
+export default dueAndCompleteTestSlice.reducer;

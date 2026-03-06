@@ -38,7 +38,7 @@ const DueFormBody = ({ register }) => {
       />
       <select
         onChange={(e) => dispatch(addDueTest(e.target.value))}
-        required={false}
+        required={!due?.length && !completed?.length}
         className="focus:outline-none bg-[#1C2822] w-full py-2 px-2 rounded"
       >
         <option value="">Select Test</option>
@@ -49,25 +49,25 @@ const DueFormBody = ({ register }) => {
         ))}
       </select>
 
-      <div className="grid grid-cols-2 gap-5">
+      <div className="grid grid-cols-2 gap-3 mt-3">
         {/* Due section */}
-        <div className="bg-[#1C2822] p-2 flex flex-col gap-3 rounded-md">
-          <p className="text-center text-lg font-bold">Due</p>
-          <div className="flex items-center gap-3 flex-wrap ">
+        <div className="bg-[#1C2822] p-2 flex flex-col gap-3 rounded-md relative">
+          <p className="text-center text-sm font-bold absolute -top-3 bg-rose-500 px-5 rounded-full text-white">Due</p>
+          <div className="flex items-center gap-3 flex-wrap mt-5">
             {due?.map((item) => (
               <div
                 key={item}
-                className="bg-[#abd006] font-bold text-sm px-2 py-1 rounded-full flex items-center gap-2"
+                className="border border-rose-500 font-bold text-sm px-2 py-1 rounded-full flex items-center gap-2"
               >
                 <FaCircleXmark
-                  className="text-red-500 text-lg cursor-pointer"
+                  className="text-rose-500 text-lg cursor-pointer"
                   onClick={() => dispatch(removeDueTest(item))}
                   title="Remove"
                 />
-                <span className="text-black">{item}</span>
+                <span className="text-white">{item}</span>
 
                 <FaCheckCircle
-                  className="text-[#1C2822] text-lg cursor-pointer"
+                  className="text-[#047857] text-lg cursor-pointer"
                   onClick={() => dispatch(addCompleteTest(item))}
                   title="Complete"
                 />
@@ -77,15 +77,15 @@ const DueFormBody = ({ register }) => {
         </div>
 
         {/* Completed section */}
-        <div className="bg-[#1C2822] p-2 flex flex-col gap-3 rounded-md">
-          <p className="text-center text-lg font-bold">Completed</p>
-          <div className="flex items-center gap-3 flex-wrap">
+        <div className="bg-[#1C2822] p-2 flex flex-col gap-3 rounded-md relative">
+          <p className="text-center text-sm font-bold absolute -top-3 bg-[#047857] px-5 rounded-full text-white">Completed</p>
+          <div className="flex items-center gap-3 flex-wrap mt-5">
             {completed?.map((item) => (
               <div
                 key={item}
-                className="bg-[#abd006] font-bold text-sm px-2 py-1 rounded-full flex items-center gap-2"
+                className="border-2 border-[#047857] font-bold text-sm px-2 py-1 rounded-full flex items-center gap-2"
               >
-                <span className="text-black">{item}</span>
+                <span className="text-white">{item}</span>
                 <FaCircleXmark
                   className="text-red-500 text-lg cursor-pointer"
                   onClick={() => dispatch(removeCompleteTest(item))}

@@ -65,7 +65,7 @@ const UpdateDueSample = ({ item, isUpdated = false }) => {
       {isFormOpen && (
         <Modal
           title={"Update"}
-          className="w-[350px] xl:w-[500px]"
+          className="w-[350px] xl:w-[550px]"
           onClose={setIsFormOpen}
           isOpen={isFormOpen}
         >

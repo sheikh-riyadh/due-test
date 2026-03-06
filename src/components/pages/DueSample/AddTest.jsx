@@ -18,7 +18,7 @@ const AddTest = () => {
       {isModalOpen && (
         <Modal
           title={"Add Test"}
-          className="w-[350px] xl:w-[500px]"
+          className="w-[350px] xl:w-[550px]"
           onClose={setIsModalOpen}
           isOpen={isModalOpen}
         >
