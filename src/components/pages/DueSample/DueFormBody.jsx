@@ -35,6 +35,7 @@ const DueFormBody = ({ register }) => {
         required
         placeholder="Invoice"
         className={classes}
+        type="number"
       />
       <select
         onChange={(e) => dispatch(addDueTest(e.target.value))}
@@ -52,7 +53,9 @@ const DueFormBody = ({ register }) => {
       <div className="grid grid-cols-2 gap-3 mt-3">
         {/* Due section */}
         <div className="bg-[#1C2822] p-2 flex flex-col gap-3 rounded-md relative">
-          <p className="text-center text-sm font-bold absolute -top-3 bg-rose-500 px-5 rounded-full text-white">Due</p>
+          <p className="text-center text-sm font-bold absolute -top-3 bg-rose-500 px-5 rounded-full text-white">
+            Due
+          </p>
           <div className="flex items-center gap-3 flex-wrap mt-5">
             {due?.map((item) => (
               <div
@@ -78,7 +81,9 @@ const DueFormBody = ({ register }) => {
 
         {/* Completed section */}
         <div className="bg-[#1C2822] p-2 flex flex-col gap-3 rounded-md relative">
-          <p className="text-center text-sm font-bold absolute -top-3 bg-[#047857] px-5 rounded-full text-white">Completed</p>
+          <p className="text-center text-sm font-bold absolute -top-3 bg-[#047857] px-5 rounded-full text-white">
+            Completed
+          </p>
           <div className="flex items-center gap-3 flex-wrap mt-5">
             {completed?.map((item) => (
               <div
@@ -129,8 +134,8 @@ const DueFormBody = ({ register }) => {
 
         <Select
           {...register("status")}
-          defaultValue="Due"
-          options={["Due", "Collected"]}
+          defaultValue={"Due"}
+          options={["Due", "Completed"]}
           label="Sample Status"
           required
         />

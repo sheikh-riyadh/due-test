@@ -1,17 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import Modal from "../../modals/Modal";
 import PropTypes from "prop-types";
 import DueForm from "./DueForm";
-import { useDispatch } from "react-redux";
 import { clearTest } from "../../../store/features/dueAndCompleteTest/dueAndCompleteTestSlice";
 
 const IsAdd = () => {
   const [isModalOpen, setIsModalOpen] = useState(true);
   const dispatch = useDispatch();
 
-  if (isModalOpen) {
+  useEffect(() => {
     dispatch(clearTest());
-  }
+  }, [dispatch]);
 
   return (
     <>

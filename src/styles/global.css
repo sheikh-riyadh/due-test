@@ -110,3 +110,10 @@ body {
 .bar-hidden::-webkit-scrollbar {
   display: none;
 } */
+
+/* Number input arrow button hide */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}

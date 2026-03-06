@@ -20,11 +20,6 @@ const baseQueryWithReauth = async (args, api, extraOptions) => {
     api.dispatch(removeUser());
   }
 
-  // If server 500, log to console for debugging
-  if (result?.error && result.error.status === 500) {
-    console.error("Server 500 error:", result.error);
-  }
-
   return result;
 };
 

@@ -19,7 +19,7 @@ const DueForm = ({ setIsModalOpen }) => {
   const { due, completed } = useGetDueAndCompleteTest();
 
   const dispatch = useDispatch();
-  const { register, handleSubmit } = useForm({
+  const { register, handleSubmit, setValue } = useForm({
     defaultValues: {
       invoice,
     },
@@ -45,6 +45,13 @@ const DueForm = ({ setIsModalOpen }) => {
       dispatch(clearTest());
     }
   };
+
+  if (!due?.length && completed?.length) {
+    setValue("status", "Completed");
+  } else {
+    setValue("status", "Due");
+  }
+
   return (
     <div>
       <form

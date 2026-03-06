@@ -28,10 +28,10 @@ const DueSample = () => {
                 Due
               </span>
               <span
-                onClick={() => setStatus("Collected")}
-                className={`${status == "Collected" ? "bg-[#047857]" : "bg-[#1C2822]"} text-primary px-5 py-1 rounded-full cursor-pointer`}
+                onClick={() => setStatus("Completed")}
+                className={`${status == "Completed" ? "bg-[#047857]" : "bg-[#1C2822]"} text-primary px-5 py-1 rounded-full cursor-pointer`}
               >
-                Collected
+                Completed
               </span>
               <Input
                 onChange={(e) => setDate(e.target.value)}
@@ -48,6 +48,7 @@ const DueSample = () => {
               placeholder="Search..."
               className="bg-[#1C2822]"
               autoFocus
+              type="number"
             />
 
             <AddTest />

@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
 import PropTypes from "prop-types";
-import { FaEdit } from "react-icons/fa";
 import Modal from "../../modals/Modal";
 import SubmitButton from "../../common/SubmitButton";
 import DueFormBody from "./DueFormBody";
@@ -61,9 +60,17 @@ const UpdateDueSample = ({ item, isUpdated = false }) => {
         }
       }
     }
-    dispatch(setDueTest(item?.due));
-    dispatch(setCompletedTest(item?.completed));
-  }, [setValue, item, dispatch]);
+    if (isUpdated) {
+      dispatch(setDueTest(item?.due));
+      dispatch(setCompletedTest(item?.completed));
+    }
+  }, [setValue, item, dispatch, isUpdated]);
+
+  if (!due?.length && completed?.length) {
+    setValue("status", "Completed");
+  } else {
+    setValue("status", "Due");
+  }
 
   return (
     <>
