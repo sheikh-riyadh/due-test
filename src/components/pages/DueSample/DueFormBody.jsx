@@ -57,25 +57,31 @@ const DueFormBody = ({ register }) => {
             Due
           </p>
           <div className="flex items-center gap-3 flex-wrap mt-5">
-            {due?.map((item) => (
-              <div
-                key={item}
-                className="border border-rose-500 font-bold text-sm px-2 py-1 rounded-full flex items-center gap-2"
-              >
-                <FaCircleXmark
-                  className="text-rose-500 text-lg cursor-pointer"
-                  onClick={() => dispatch(removeDueTest(item))}
-                  title="Remove"
-                />
-                <span className="text-white">{item}</span>
+            {due?.length ? (
+              due?.map((item) => (
+                <div
+                  key={item}
+                  className="border border-rose-500 font-bold text-sm px-2 py-1 rounded-full flex items-center gap-2"
+                >
+                  <FaCircleXmark
+                    className="text-rose-500 text-lg cursor-pointer"
+                    onClick={() => dispatch(removeDueTest(item))}
+                    title="Remove"
+                  />
+                  <span className="text-white">{item}</span>
 
-                <FaCheckCircle
-                  className="text-[#047857] text-lg cursor-pointer"
-                  onClick={() => dispatch(addCompleteTest(item))}
-                  title="Complete"
-                />
-              </div>
-            ))}
+                  <FaCheckCircle
+                    className="text-[#047857] text-lg cursor-pointer"
+                    onClick={() => dispatch(addCompleteTest(item))}
+                    title="Complete"
+                  />
+                </div>
+              ))
+            ) : (
+              <span className="text-white font-bold text-center">
+                No Due 😊
+              </span>
+            )}
           </div>
         </div>
 
@@ -85,19 +91,25 @@ const DueFormBody = ({ register }) => {
             Completed
           </p>
           <div className="flex items-center gap-3 flex-wrap mt-5">
-            {completed?.map((item) => (
-              <div
-                key={item}
-                className="border-2 border-[#047857] font-bold text-sm px-2 py-1 rounded-full flex items-center gap-2"
-              >
-                <span className="text-white">{item}</span>
-                <FaCircleXmark
-                  className="text-red-500 text-lg cursor-pointer"
-                  onClick={() => dispatch(removeCompleteTest(item))}
-                  title="Remove"
-                />
-              </div>
-            ))}
+            {completed?.length ? (
+              completed?.map((item) => (
+                <div
+                  key={item}
+                  className="border-2 border-[#047857] font-bold text-sm px-2 py-1 rounded-full flex items-center gap-2"
+                >
+                  <span className="text-white">{item}</span>
+                  <FaCircleXmark
+                    className="text-red-500 text-lg cursor-pointer"
+                    onClick={() => dispatch(removeCompleteTest(item))}
+                    title="Remove"
+                  />
+                </div>
+              ))
+            ) : (
+              <span className="text-white font-bold text-center">
+                Sample Not Collected Yet 🙂
+              </span>
+            )}
           </div>
         </div>
       </div>
