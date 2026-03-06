@@ -9,10 +9,17 @@ import DueFormBody from "./DueFormBody";
 import { useUpdateDueTestMutation } from "../../../store/services/dueApi/dueApi";
 import { useDispatch } from "react-redux";
 import { removeInvoice } from "../../../store/features/invoice/invoiceSlice";
+import {
+  clearTest,
+  setCompletedTest,
+  setDueTest,
+} from "../../../store/features/dueAndCompleteTest/dueAndCompleteTestSlice";
+import { useGetDueAndCompleteTest } from "../../../hooks/useGetDueAndCompleteTest";
 
 const UpdateDueSample = ({ item, isUpdated = false }) => {
   const { register, setValue, handleSubmit } = useForm();
   const [isFormOpen, setIsFormOpen] = useState(isUpdated);
+  const { due, completed } = useGetDueAndCompleteTest();
 
   const dispatch = useDispatch();
   const [updatePopular, { isLoading }] = useUpdateDueTestMutation();
@@ -20,13 +27,14 @@ const UpdateDueSample = ({ item, isUpdated = false }) => {
   const handleUpdatePopular = async (data) => {
     const query = {
       id: item?._id,
-      data,
+      data: { ...data, due, completed },
     };
     try {
       const result = await updatePopular(query);
       if (result?.data?.acknowledged) {
         toast.success("Update test successfully 😀", { id: "success" });
         dispatch(removeInvoice());
+        dispatch(clearTest());
       } else {
         toast.error(
           result?.error?.data?.message
@@ -35,9 +43,11 @@ const UpdateDueSample = ({ item, isUpdated = false }) => {
         );
       }
       dispatch(removeInvoice());
+      dispatch(clearTest());
     } catch (error) {
       toast.error("Something went wrong 😥", { id: error });
       dispatch(removeInvoice());
+      dispatch(clearTest());
     }
   };
 
@@ -51,17 +61,12 @@ const UpdateDueSample = ({ item, isUpdated = false }) => {
         }
       }
     }
-  }, [setValue, item]);
+    dispatch(setDueTest(item?.due));
+    dispatch(setCompletedTest(item?.completed));
+  }, [setValue, item, dispatch]);
 
   return (
     <>
-      <span
-        className="text-danger cursor-pointer border border-danger text-center p-2 rounded-full bg-[#171f12] duration-300"
-        title="Delete"
-        onClick={() => setIsFormOpen((prev) => !prev)}
-      >
-        <FaEdit className="text-white" />
-      </span>
       {isFormOpen && (
         <Modal
           title={"Update"}

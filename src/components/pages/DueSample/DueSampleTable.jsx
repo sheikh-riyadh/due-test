@@ -43,23 +43,38 @@ const DueSampleTable = ({ date, status }) => {
                 key: "invoice",
               },
               {
-                name: "Test Name",
-                dataIndex: "test",
-                key: "test",
-              },
-              {
-                name: "Status",
+                name: "Due",
                 render: ({ item }) => {
                   return (
-                    <span
-                      className={`capitalize ${
-                        item?.status == "Collected"
-                          ? "bg-[#047857] px-5 rounded-full py-1"
-                          : "bg-[#F2A65A] px-5 rounded-full py-1 text-white"
-                      }`}
-                    >
-                      {item?.status}
-                    </span>
+                    <div>
+                      {item?.due?.length ? (
+                        item?.due?.map((test) => (
+                          <div>
+                            <span>{test},</span>
+                          </div>
+                        ))
+                      ) : (
+                        <span>N/A</span>
+                      )}
+                    </div>
+                  );
+                },
+              },
+              {
+                name: "Completed",
+                render: ({ item }) => {
+                  return (
+                    <div>
+                      {item?.completed?.length ? (
+                        item?.completed?.map((test) => (
+                          <div>
+                            <span>{test},</span>
+                          </div>
+                        ))
+                      ) : (
+                        <span>N/A</span>
+                      )}
+                    </div>
                   );
                 },
               },

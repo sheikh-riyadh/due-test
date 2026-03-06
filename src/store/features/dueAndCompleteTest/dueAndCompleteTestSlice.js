@@ -45,7 +45,7 @@ const dueAndCompleteTestSlice = createSlice({
     },
     clearTest: (state) => {
       state.value.completed = [];
-      state.value.due = [];
+      state.value.due = ["2hrs after breakfast"];
     },
   },
 });

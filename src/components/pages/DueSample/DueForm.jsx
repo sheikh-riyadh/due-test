@@ -8,11 +8,15 @@ import { useAddDueTestMutation } from "../../../store/services/dueApi/dueApi";
 import moment from "moment";
 import { useGetInvoice } from "../../../hooks/useGetInvoice";
 import { removeInvoice } from "../../../store/features/invoice/invoiceSlice";
+import { useGetDueAndCompleteTest } from "../../../hooks/useGetDueAndCompleteTest";
+import { clearTest } from "../../../store/features/dueAndCompleteTest/dueAndCompleteTestSlice";
 
 const DueForm = ({ setIsModalOpen }) => {
   const [addTest, { isLoading }] = useAddDueTestMutation();
   const now = moment();
+
   const { invoice } = useGetInvoice();
+  const { due, completed } = useGetDueAndCompleteTest();
 
   const dispatch = useDispatch();
   const { register, handleSubmit } = useForm({
@@ -24,6 +28,8 @@ const DueForm = ({ setIsModalOpen }) => {
   const handleAddTest = async (data) => {
     const finalData = {
       ...data,
+      due,
+      completed,
       fastingDate: now.format("YYYY-MM-DD"),
       fastingTime: now.format("HH:mm"),
     };
@@ -32,9 +38,11 @@ const DueForm = ({ setIsModalOpen }) => {
       toast.success("Test added successfully", { id: "success" });
       setIsModalOpen(false);
       dispatch(removeInvoice());
+      dispatch(clearTest());
     } else {
       toast.error(result?.error?.data?.message);
       dispatch(removeInvoice());
+      dispatch(clearTest());
     }
   };
   return (
@@ -43,7 +51,7 @@ const DueForm = ({ setIsModalOpen }) => {
         onSubmit={handleSubmit(handleAddTest)}
         className="flex flex-col gap-3"
       >
-        <DueFormBody register={register}/>
+        <DueFormBody register={register} />
         <SubmitButton isLoading={isLoading}>Save</SubmitButton>
       </form>
     </div>

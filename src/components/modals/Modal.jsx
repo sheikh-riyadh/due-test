@@ -4,6 +4,7 @@ import { FaCircleXmark } from "react-icons/fa6";
 import cn from "../../utils/cn";
 import { useDispatch } from "react-redux";
 import { removeInvoice } from "../../store/features/invoice/invoiceSlice";
+import { clearTest } from "../../store/features/dueAndCompleteTest/dueAndCompleteTestSlice";
 
 const Modal = ({
   isOpen,
@@ -50,7 +51,7 @@ const Modal = ({
             <span className="font-bold text-primary">{title}</span>
             <FaCircleXmark
               onClick={() => {
-                (onClose(), dispatch(removeInvoice()));
+                (onClose(), dispatch(removeInvoice()), dispatch(clearTest()));
               }}
               className="text-2xl text-primary duration-300 cursor-pointer"
             />
