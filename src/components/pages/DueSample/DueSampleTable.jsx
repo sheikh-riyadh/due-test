@@ -4,7 +4,6 @@ import { FaUser } from "react-icons/fa";
 import moment from "moment";
 import Table from "../../common/Table";
 import UpdateDueSample from "./UpdateDueSample";
-import ViewDetails from "./ViewDetails";
 import { useGetDueTestQuery } from "../../../store/services/dueApi/dueApi";
 import DeleteDueSample from "./DeleteDueSample";
 import CountDown from "./CountDown";
@@ -124,7 +123,6 @@ const DueSampleTable = ({ date, status }) => {
                 render: ({ item }) => {
                   return (
                     <div className="flex items-center gap-2">
-                      <ViewDetails item={item} />
                       <UpdateDueSample
                         item={item}
                         isUpdated={

@@ -30,10 +30,10 @@ const Login = () => {
   return (
     <div className="h-svh relative">
       <div className="flex flex-col  items-center justify-center h-screen w-full my_container z-30 absolute">
-        <div className="flex flex-col items-center justify-center bg-white border shadow-lg rounded-xl overflow-hidden w-[340px] h-[340px]">
+        <div className="flex flex-col items-center justify-center bg-white border shadow-lg rounded-xl overflow-hidden w-[340px] h-[340px] p-7">
           <form
             onSubmit={handleSubmit(handleLogin)}
-            className="flex flex-col items-center justify-center gap-5 w-full p-7"
+            className="flex flex-col items-center justify-center gap-5 w-full"
           >
             <div className="w-16 h-16 border p-2 rounded-full flex flex-col items-center justify-center bg-emerald-700 text-white">
               <FaLock className="text-4xl" />

@@ -16,7 +16,7 @@ const AddTest = () => {
   return (
     <>
       <Button onClick={() => setIsModalOpen((prev) => !prev)} className="w-36">
-        Add 2hrs
+        Add Test
       </Button>
 
       {isModalOpen && (

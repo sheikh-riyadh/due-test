@@ -16,7 +16,7 @@ const Analytics = ({ analyticeData }) => {
     color_2 = "#047857";
 
   return (
-    <div className="w-full bg-[#1f2e2c] text-white md:h-[550px]  col-span-9 gap-5 shadow-md md:pb-28 lg:pb-36 rounded-sm">
+    <div className="w-full bg-[#1f2e2c] text-white h-screen col-span-9 gap-5 shadow-md md:pb-28 lg:pb-36 rounded-sm">
       <div className="flex gap-5 p-5 justify-between flex-wrap">
         <div className="flex flex-col gap-2">
           <span className="font-bold text-2xl">Welcome back</span>

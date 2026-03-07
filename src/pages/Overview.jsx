@@ -57,7 +57,7 @@ const Overview = () => {
   });
 
   return (
-    <div>
+    <div className="h-screen">
       {!isLoading ? (
         <div className="mb-10 grid xl:grid-cols-12 gap-5 h-full">
           <div className="xl:col-span-9">
