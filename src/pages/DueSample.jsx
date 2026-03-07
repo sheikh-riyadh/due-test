@@ -10,10 +10,14 @@ const DueSample = () => {
   const [date, setDate] = useState();
   const dispatch = useDispatch();
 
-  const handleInvoice = (e) => {
-    dispatch(addInvoice(e.target.value));
+ const handleInvoice = (e) => {
+  const value = e.target.value;
+  dispatch(addInvoice(value));
+
+  setTimeout(() => {
     e.target.value = "";
-  };
+  }, 4000);
+};
 
   return (
     <div>
