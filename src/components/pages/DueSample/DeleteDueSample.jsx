@@ -20,7 +20,6 @@ const DeleteDueSample = ({ deleteId }) => {
       <Button
         className="text-danger cursor-pointer border border-danger text-center p-2 rounded-full bg-rose-500 duration-300 w-8 disabled:bg-gray-700 disabled:cursor-not-allowed"
         title="Delete"
-        disabled={user?.role !== "admin" && true}
         onClick={() => setIsModalOpen((prev) => !prev)}
       >
         <FaTrash className="text-white" />
