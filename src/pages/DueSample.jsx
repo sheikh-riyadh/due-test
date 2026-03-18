@@ -1,8 +1,9 @@
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import toast from "react-hot-toast";
 import Input from "../components/common/Input";
 import AddTest from "../components/pages/DueSample/AddTest";
 import DueSampleTable from "../components/pages/DueSample/DueSampleTable";
-import { useDispatch } from "react-redux";
 import { addInvoice } from "../store/features/invoice/invoiceSlice";
 
 const DueSample = () => {
@@ -12,6 +13,10 @@ const DueSample = () => {
 
  const handleInvoice = (e) => {
   const value = e.target.value;
+  if(value?.length > 9){
+    toast.error('invoice number must be 9 digits', {id:'error'})
+    return
+  }
   dispatch(addInvoice(value));
 
   setTimeout(() => {
