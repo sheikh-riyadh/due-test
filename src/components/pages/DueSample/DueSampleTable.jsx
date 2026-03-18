@@ -85,7 +85,7 @@ const DueSampleTable = ({ date, status }) => {
               },
               {
                 render: ({ item }) => {
-                  return item.status !== "Collected" ? (
+                  return item.status !== "Completed" ? (
                     <CountDown data={item} />
                   ) : (
                     <span>{moment(item?.updatedAtt).format("ll")}</span>
